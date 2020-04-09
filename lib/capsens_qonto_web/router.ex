@@ -16,7 +16,8 @@ defmodule CapsensQontoWeb.Router do
   scope "/", CapsensQontoWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", AppController, :new
+    post "/", AppController, :create
   end
 
   scope "/api", CapsensQontoWeb do
