@@ -19,6 +19,12 @@ defmodule CapsensQontoWeb.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", CapsensQontoWeb do
+    pipe_through :api
+
+    get "/", Api.TestController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CapsensQontoWeb do
   #   pipe_through :api

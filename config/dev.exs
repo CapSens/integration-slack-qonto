@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :capsens_qonto, CapsensQonto.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "eliotbardet",
+  password: "",
   database: "capsens_qonto_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,

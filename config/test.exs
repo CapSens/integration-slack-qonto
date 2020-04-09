@@ -2,8 +2,8 @@ use Mix.Config
 
 # Configure your database
 config :capsens_qonto, CapsensQonto.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "eliotbardet",
+  password: "",
   database: "capsens_qonto_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
