@@ -18,7 +18,7 @@ defmodule CapsensQontoWeb.AppController do
   def edit(conn, %{"id" => id}) do
     app       = CapsensQonto.App.get!(id)
     changeset = CapsensQonto.App.change(app)
-    result    = CapsensQonto.Transactions.list(app.identifier, app.secret_key, app.iban, app.bank_account)
+    result    = CapsensQonto.Transactions.list(app.identifier, app.secret_key, app.iban) |> List.first
 
     render(conn, "edit.html", app: app, changeset: changeset, result: result)
   end

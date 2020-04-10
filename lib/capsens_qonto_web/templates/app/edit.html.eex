@@ -13,11 +13,13 @@
         <%= render "form.html", f: f %>
       <% end %>
 
-      <div class="card-body">
-        Exemple de réponse :
+      <%= if @result do %>
+        <div class="card-body">
+          Exemple de réponse :
 
-        <%= @result %>
-      </div>
+          <%= IO.inspect Jason.encode! @result %>
+        </div>
+      <% end %>
     </div>
   </div>
   <div class="card">
