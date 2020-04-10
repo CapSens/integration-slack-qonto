@@ -36,6 +36,14 @@
           </div>
 
           <div class="form-group">
+            <%= label f, :transaction_type do %>
+              Quelles transactions sont concernées ?
+            <% end %>
+            <%= multiple_select f, :transaction_type, CapsensQonto.App.transaction_types, class: "form-control" %>
+            <%= error_tag f, :transaction_type %>
+          </div>
+
+          <div class="form-group">
             <%= submit "Envoyer", class: "btn btn-primary" %>
           </div>
         </div>
