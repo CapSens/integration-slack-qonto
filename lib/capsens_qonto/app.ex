@@ -21,4 +21,8 @@ defmodule CapsensQonto.App do
     |> CapsensQonto.App.changeset(attrs)
     |> CapsensQonto.Repo.insert()
   end
+
+  def list do
+    CapsensQonto.Repo.all(CapsensQonto.App)
+  end
 end
