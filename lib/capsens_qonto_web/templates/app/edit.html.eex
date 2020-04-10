@@ -9,9 +9,15 @@
     </div>
 
     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <%= form_for @changeset, Routes.app_path(@conn, :create), fn(f) -> %>
+      <%= form_for @changeset, Routes.app_path(@conn, :update, @app), fn(f) -> %>
         <%= render "form.html", f: f %>
       <% end %>
+
+      <div class="card-body">
+        Exemple de réponse :
+
+        <%= @result %>
+      </div>
     </div>
   </div>
   <div class="card">

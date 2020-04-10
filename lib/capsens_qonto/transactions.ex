@@ -1,11 +1,11 @@
 defmodule CapsensQonto.Transactions do
-  def fetch_transactions do
+  def list(identifier, secret_key, iban, bank_account) do
     {:ok, %HTTPoison.Response{status_code: 200, body: body}} = HTTPoison.get(
       "https://thirdparty.qonto.eu/v2/transactions",
-      ["Authorization": Application.get_env(:capsens_qonto, :config)[:auth]],
+      ["Authorization": "#{identifier}:#{secret_key}"],
       params: %{
-        "iban" => Application.get_env(:capsens_qonto, :config)[:iban],
-        "slug" => Application.get_env(:capsens_qonto, :config)[:bank_account]
+        iban: iban,
+        slug: bank_account
       }
     )
 

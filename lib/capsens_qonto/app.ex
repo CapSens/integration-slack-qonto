@@ -2,6 +2,9 @@ defmodule CapsensQonto.App do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias CapsensQonto.App
+  alias CapsensQonto.Repo
+
   schema "apps" do
     field :iban, :string
     field :identifier, :string
@@ -15,13 +18,13 @@ defmodule CapsensQonto.App do
     app
     |> cast(attrs, [:identifier, :secret_key, :iban, :transaction_type])
     |> validate_required([:identifier, :secret_key, :iban, :transaction_type])
-    |> validate_subset(:transaction_type, CapsensQonto.App.transaction_types)
+    |> validate_subset(:transaction_type, App.transaction_types)
   end
 
   def create(attrs \\ %{}) do
-    %CapsensQonto.App{}
-    |> CapsensQonto.App.changeset(attrs)
-    |> CapsensQonto.Repo.insert()
+    %App{}
+    |> App.changeset(attrs)
+    |> Repo.insert()
   end
 
   def transaction_types do
@@ -29,6 +32,20 @@ defmodule CapsensQonto.App do
   end
 
   def list do
-    CapsensQonto.Repo.all(CapsensQonto.App)
+    Repo.all(App)
+  end
+
+  def get!(id) do
+    Repo.get!(App, id)
+  end
+
+  def change(%App{} = app) do
+    App.changeset(app, %{})
+  end
+
+  def update(%App{} = app, attrs) do
+    app
+    |> App.changeset(attrs)
+    |> Repo.update()
   end
 end
