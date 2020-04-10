@@ -15,4 +15,10 @@ defmodule CapsensQonto.App do
     |> cast(attrs, [:identifier, :secret_key, :iban])
     |> validate_required([:identifier, :secret_key, :iban])
   end
+
+  def create(attrs \\ %{}) do
+    %CapsensQonto.App{}
+    |> CapsensQonto.App.changeset(attrs)
+    |> CapsensQonto.Repo.insert()
+  end
 end
