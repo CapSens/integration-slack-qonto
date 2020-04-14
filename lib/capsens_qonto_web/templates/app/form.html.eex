@@ -1,34 +1,34 @@
 <div class="card-body">
   <div class="form-group">
-    <%= label @f, :identifier do %>
+    <%= label @f, :qonto_identifier do %>
       Collez ici votre identifiant. Votre identifiant n'est pas votre e-mail, c'est le champ "identifiant" qui se trouve dans votre espace Qonto, dans "Paramètres"> "API". Il se termine par 4 chiffres.
     <% end %>
-    <%= text_input @f, :identifier, class: "form-control" %>
-    <%= error_tag @f, :identifier %>
+    <%= text_input @f, :qonto_identifier, class: "form-control" %>
+    <%= error_tag @f, :qonto_identifier %>
   </div>
 
   <div class="form-group">
-    <%= label @f, :secret_key do %>
+    <%= label @f, :qonto_secret_key do %>
       Votre clé secrète se trouve dans votre espace Qonto, dans "Paramètres"> "API". Vous pouvez en générer un si vous n'en avez pas déjà un.
     <% end %>
-    <%= text_input @f, :secret_key, class: "form-control" %>
-    <%= error_tag @f, :secret_key %>
+    <%= text_input @f, :qonto_secret_key, class: "form-control" %>
+    <%= error_tag @f, :qonto_secret_key %>
   </div>
 
   <div class="form-group">
-    <%= label @f, :iban do %>
+    <%= label @f, :qonto_iban do %>
       Choisissez l'IBAN de votre compte.
     <% end %>
-    <%= text_input @f, :iban, class: "form-control" %>
-    <%= error_tag @f, :iban %>
+    <%= text_input @f, :qonto_iban, class: "form-control" %>
+    <%= error_tag @f, :qonto_iban %>
   </div>
 
   <div class="form-group">
-    <%= label @f, :transaction_type do %>
+    <%= label @f, :qonto_transaction_type do %>
       Quelles transactions sont concernées ?
     <% end %>
-    <%= multiple_select @f, :transaction_type, CapsensQonto.App.transaction_types, class: "form-control" %>
-    <%= error_tag @f, :transaction_type %>
+    <%= multiple_select @f, :qonto_transaction_type, CapsensQonto.App.qonto_transaction_types, class: "form-control" %>
+    <%= error_tag @f, :qonto_transaction_type %>
   </div>
 
   <div class="form-group">

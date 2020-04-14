@@ -6,10 +6,10 @@ defmodule CapsensQonto.App do
   alias CapsensQonto.Repo
 
   schema "apps" do
-    field :iban, :string
-    field :identifier, :string
-    field :secret_key, :string
-    field :transaction_type, {:array, :string}
+    field :qonto_iban, :string
+    field :qonto_identifier, :string
+    field :qonto_secret_key, :string
+    field :qonto_transaction_type, {:array, :string}
     field :slack_access_token, :string
     field :slack_user_id, :string
     field :slack_hook_url, :string
@@ -24,13 +24,20 @@ defmodule CapsensQonto.App do
     |> unique_constraint(:slack_user_id)
   end
 
+  def qonto_changeset(app, attrs \\ %{}) do
+    app
+    |> cast(attrs, [:qonto_identifier, :qonto_secret_key, :qonto_iban, :qonto_transaction_type])
+    |> validate_required([:qonto_identifier, :qonto_secret_key, :qonto_iban, :qonto_transaction_type])
+    |> validate_subset(:qonto_transaction_type, App.qonto_transaction_types)
+  end
+
   def create(attrs \\ %{}) do
     %App{}
     |> App.changeset(attrs)
     |> Repo.insert()
   end
 
-  def transaction_types do
+  def qonto_transaction_types do
     ["Crédit", "Débit"]
   end
 
@@ -42,13 +49,7 @@ defmodule CapsensQonto.App do
     Repo.get!(App, id)
   end
 
-  def change(%App{} = app) do
-    App.changeset(app, %{})
-  end
-
-  def update(%App{} = app, attrs) do
-    app
-    |> App.changeset(attrs)
-    |> Repo.update()
+  def update(changeset) do
+    Repo.update(changeset)
   end
 end

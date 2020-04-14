@@ -12,6 +12,18 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/slack_controller.ex:8
+#: lib/capsens_qonto_web/controllers/slack_controller.ex:10
 msgid "slack_success"
 msgstr "Connexion à Slack réussie"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:13
+msgctxt "app"
+msgid "creation_success"
+msgstr "Application créée avec succès"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:34
+msgctxt "app"
+msgid "update_success"
+msgstr "Application mise à jour"

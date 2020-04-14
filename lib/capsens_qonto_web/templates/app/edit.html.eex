@@ -22,17 +22,7 @@
         <%= render "form.html", f: f %>
       <% end %>
 
-      <%= if @result do %>
-        <div class="card-body code-background">
-          Exemple de réponse :
-          <pre>
-
-            <%= for {k, v} <- @result do %>
-              <%= k %> : <%= v %><br />
-            <% end %>
-          </pre>
-        </div>
-      <% end %>
+      <%= qonto_sample(@app) %>
     </div>
   </div>
 </div>

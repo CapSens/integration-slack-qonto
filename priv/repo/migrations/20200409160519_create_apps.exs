@@ -3,10 +3,10 @@ defmodule CapsensQonto.Repo.Migrations.CreateApps do
 
   def change do
     create table(:apps) do
-      add :identifier, :string
-      add :secret_key, :string
-      add :iban, :string
-      add :transaction_type, {:array, :string}
+      add :qonto_identifier, :string
+      add :qonto_secret_key, :string
+      add :qonto_iban, :string
+      add :qonto_transaction_type, {:array, :string}
       add :slack_access_token, :string
       add :slack_user_id, :string, unique: true
       add :slack_hook_url, :string

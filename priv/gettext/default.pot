@@ -11,6 +11,18 @@ msgid ""
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/slack_controller.ex:8
+#: lib/capsens_qonto_web/controllers/slack_controller.ex:10
 msgid "slack_success"
+msgstr ""
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:13
+msgctxt "app"
+msgid "creation_success"
+msgstr ""
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:34
+msgctxt "app"
+msgid "update_success"
 msgstr ""
