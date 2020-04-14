@@ -10,15 +10,18 @@ defmodule CapsensQonto.App do
     field :identifier, :string
     field :secret_key, :string
     field :transaction_type, {:array, :string}
+    field :slack_access_token, :string
+    field :slack_user_id, :string
+    field :slack_hook_url, :string
 
     timestamps()
   end
 
   def changeset(app, attrs \\ %{}) do
     app
-    |> cast(attrs, [:identifier, :secret_key, :iban, :transaction_type])
-    |> validate_required([:identifier, :secret_key, :iban, :transaction_type])
-    |> validate_subset(:transaction_type, App.transaction_types)
+    |> cast(attrs, [:identifier, :secret_key, :iban, :transaction_type, :slack_access_token, :slack_user_id])
+    |> validate_required([:slack_access_token, :slack_user_id])
+    |> unique_constraint(:slack_user_id)
   end
 
   def create(attrs \\ %{}) do
