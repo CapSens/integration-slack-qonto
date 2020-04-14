@@ -1,5 +1,9 @@
 use Mix.Config
 
+config :capsens_qonto,
+  slack_client_id: System.get_env("SLACK_CLIENT_ID"),
+  slack_client_secret: System.get_env("SLACK_CLIENT_SECRET"),
+
 # Configure your database
 config :capsens_qonto, CapsensQonto.Repo,
   username: "eliotbardet",

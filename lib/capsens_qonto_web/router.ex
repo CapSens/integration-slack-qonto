@@ -18,6 +18,7 @@ defmodule CapsensQontoWeb.Router do
 
     resources "/apps", AppController, only: [:new, :create, :edit, :update]
     get "/", AppController, :new
+    get "/slack", SlackController, :new
   end
 
   scope "/api", CapsensQontoWeb do

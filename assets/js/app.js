@@ -10,7 +10,18 @@ import css from "../css/app.css";
 // Import dependencies
 //
 import "phoenix_html";
+import $ from "jquery";
 import "bootstrap";
+import toastr from "toastr";
+
+toastr.options.toastClass = 'toastr';
+
+if ($('.flash.info')[0]) {
+  toastr["info"]($('.flash.info').html());
+}
+if ($('.flash.error')[0]) {
+  toastr["error"]($('.flash.error').html());
+}
 
 // Import local files
 //
