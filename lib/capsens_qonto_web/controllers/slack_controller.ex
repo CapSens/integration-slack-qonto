@@ -3,8 +3,8 @@ defmodule CapsensQontoWeb.SlackController do
 
   def new(conn, params) do
     case CapsensQonto.Slack.request_access_token(params["code"]) do
-      {:ok, access_token: access_token, user_id: user_id} ->
-        case CapsensQonto.App.create(%{slack_access_token: access_token, slack_user_id: user_id}) do
+      {:ok, access_token: access_token, user_id: user_id, hook_url: hook_url} ->
+        case CapsensQonto.App.create(%{slack_access_token: access_token, slack_user_id: user_id, slack_hook_url: hook_url}) do
           {:ok, app} ->
             conn
             |> put_flash(:info, gettext("slack_success"))

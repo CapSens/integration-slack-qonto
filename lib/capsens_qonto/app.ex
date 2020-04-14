@@ -19,7 +19,7 @@ defmodule CapsensQonto.App do
 
   def changeset(app, attrs \\ %{}) do
     app
-    |> cast(attrs, [:identifier, :secret_key, :iban, :transaction_type, :slack_access_token, :slack_user_id])
+    |> cast(attrs, [:slack_access_token, :slack_user_id, :slack_hook_url])
     |> validate_required([:slack_access_token, :slack_user_id])
     |> unique_constraint(:slack_user_id)
   end
