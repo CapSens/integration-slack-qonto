@@ -1,7 +1,7 @@
 defmodule CapsensQonto.Slack do
   def request_access_token(verification_code) do
     case response = HTTPoison.get(
-    "https://slack.com/api/oauth.v2.access",
+    "https://slack.com/api/oauth.access",
     [],
     params: %{
       client_id: Application.get_env(:capsens_qonto, :slack_client_id),
@@ -13,7 +13,7 @@ defmodule CapsensQonto.Slack do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         case payload = Jason.decode!(body) do
           %{"ok" => true} ->
-            {:ok, access_token: payload["access_token"], user_id: payload["authed_user"]["id"], hook_url: payload["incoming_webhook"]["url"]}
+            {:ok, access_token: payload["access_token"], user_id: payload["user_id"]}
           %{"ok" => false, "error" => error} ->
             {:error, error}
           _ ->
