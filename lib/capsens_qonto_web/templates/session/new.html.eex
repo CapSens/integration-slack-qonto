@@ -1,3 +1,6 @@
+<%= if @current_user do %>
+  coucou
+<% end %>
 <div class="card">
   <div class="card-header" id="slack">
     <h5 class="mb-0">

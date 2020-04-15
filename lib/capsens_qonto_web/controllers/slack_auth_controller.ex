@@ -40,5 +40,6 @@ defmodule CapsensQontoWeb.SlackAuthController do
   end
 
   defp authenticate_user(conn, _) do
+    CapsensQontoWeb.Guardian.Plug.sign_in(conn, conn.assigns[:user])
   end
 end
