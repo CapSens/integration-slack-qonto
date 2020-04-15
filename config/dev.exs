@@ -1,5 +1,9 @@
 use Mix.Config
 
+config :capsens_qonto,
+  slack_client_id: System.get_env("SLACK_CLIENT_ID"),
+  slack_client_secret: System.get_env("SLACK_CLIENT_SECRET")
+
 # Configure your database
 config :capsens_qonto, CapsensQonto.Repo,
   username: "eliotbardet",
@@ -16,7 +20,7 @@ config :capsens_qonto, CapsensQonto.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :capsens_qonto, CapsensQontoWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 4000, protocol_options: [idle_timeout: :infinity]],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,

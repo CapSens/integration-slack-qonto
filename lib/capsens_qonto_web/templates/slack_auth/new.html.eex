@@ -1,0 +1,4 @@
+coucou
+
+<%= @conn.assigns[:user_id] %>
+<%= @conn.assigns[:access_token] %>

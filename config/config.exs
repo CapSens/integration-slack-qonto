@@ -26,6 +26,12 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :capsens_qonto, CapsensQontoWeb.Gettext, locales: ~w(fr en), default_locale: "fr"
+
+config :capsens_qonto, CapsensQontoWeb.Guardian,
+  issuer: "capsens_qonto",
+  secret_key: "m3B565qpZ4lE4nrKsylFM4KgJb9UnQjSnySE+NdSkeBGtJxUIIX/UzkOJP1OV0zS"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

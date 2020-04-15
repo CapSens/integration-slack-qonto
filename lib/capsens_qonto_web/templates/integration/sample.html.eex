@@ -1,0 +1,8 @@
+<div class="card-body code-background">
+  Exemple de réponse :
+  <pre>
+    <%= for {k, v} <- @result do %>
+      <%= k %> : <%= v %><br />
+    <% end %>
+  </pre>
+</div>

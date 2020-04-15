@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-header" id="slack">
+    <h5 class="mb-0">
+      Connexion à Slack
+    </h5>
+  </div>
+
+  <div class="card-body">
+    <a href="https://slack.com/oauth/authorize?scope=channels:read,chat:write:bot&client_id=12120262387.1056466118613&redirect_uri=http://localhost:4000/slack/auth"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+  </div>
+</div>

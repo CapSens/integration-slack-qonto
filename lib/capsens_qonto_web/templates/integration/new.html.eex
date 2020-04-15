@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header" id="qonto">
+    <h5 class="mb-0">
+      Connexion à Qonto
+    </h5>
+  </div>
+
+  <div>
+    <%= form_for @changeset, Routes.integration_path(@conn, :create), fn(f) -> %>
+      <%= render "form.html", f: f %>
+    <% end %>
+  </div>
+</div>

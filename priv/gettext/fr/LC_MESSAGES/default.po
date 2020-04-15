@@ -1,0 +1,29 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/slack_controller.ex:10
+msgid "slack_success"
+msgstr "Connexion à Slack réussie"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:13
+msgctxt "app"
+msgid "creation_success"
+msgstr "Application créée avec succès"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/app_controller.ex:34
+msgctxt "app"
+msgid "update_success"
+msgstr "Application mise à jour"
