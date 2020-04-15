@@ -16,9 +16,10 @@ defmodule CapsensQontoWeb.Router do
   scope "/", CapsensQontoWeb do
     pipe_through :browser
 
+    get "/", SessionController, :new
+
     resources "/apps", AppController, only: [:new, :create, :edit, :update]
-    get "/", AppController, :new
-    get "/slack", SlackController, :new
+    get "/slack/auth", SlackAuthController, :new
   end
 
   scope "/api", CapsensQontoWeb do

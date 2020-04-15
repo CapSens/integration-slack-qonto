@@ -1,28 +1,17 @@
-<div class="accordion" id="steps">
-  <div class="card">
-    <div class="card-header" id="slack">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSlack" aria-expanded="false" aria-controls="collapseSlack">
-          Connexion à Slack
-        </button>
-      </h5>
-    </div>
+<div class="card">
+  <div class="card-header" id="qonto">
+    <h5 class="mb-0">
+      <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseQonto" aria-expanded="true" aria-controls="collapseQonto">
+        Connexion à Qonto
+      </button>
+    </h5>
   </div>
-  <div class="card">
-    <div class="card-header" id="qonto">
-      <h5 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseQonto" aria-expanded="true" aria-controls="collapseQonto">
-          Connexion à Qonto
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseQonto" class="collapse show" aria-labelledby="qonto" data-parent="#steps">
-      <%= form_for @changeset, Routes.app_path(@conn, :update, @app), fn(f) -> %>
-        <%= render "form.html", f: f %>
-      <% end %>
+  <div>
+    <%= form_for @changeset, Routes.app_path(@conn, :update, @app), fn(f) -> %>
+      <%= render "form.html", f: f %>
+    <% end %>
 
-      <%= qonto_sample(@app) %>
-    </div>
+    <%= qonto_sample(@app) %>
   </div>
 </div>

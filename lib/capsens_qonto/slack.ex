@@ -7,7 +7,7 @@ defmodule CapsensQonto.Slack do
       client_id: Application.get_env(:capsens_qonto, :slack_client_id),
       client_secret: Application.get_env(:capsens_qonto, :slack_client_secret),
       code: verification_code,
-      redirect_uri: "http://localhost:4000/slack"
+      redirect_uri: "http://localhost:4000/slack/auth"
     }
   ) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
