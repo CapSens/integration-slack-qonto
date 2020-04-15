@@ -6,7 +6,7 @@
   </div>
 
   <div>
-    <%= form_for @changeset, Routes.app_path(@conn, :new), fn(f) -> %>
+    <%= form_for @changeset, Routes.integration_path(@conn, :create), fn(f) -> %>
       <%= render "form.html", f: f %>
     <% end %>
   </div>

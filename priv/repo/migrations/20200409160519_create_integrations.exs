@@ -1,8 +1,8 @@
-defmodule CapsensQonto.Repo.Migrations.CreateApps do
+defmodule CapsensQonto.Repo.Migrations.CreateIntegrations do
   use Ecto.Migration
 
   def change do
-    create table(:apps) do
+    create table(:integrations) do
       add :qonto_identifier, :string
       add :qonto_secret_key, :string
       add :qonto_iban, :string

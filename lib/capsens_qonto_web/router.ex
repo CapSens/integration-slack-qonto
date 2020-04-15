@@ -13,23 +13,28 @@ defmodule CapsensQontoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug Guardian.Plug.Pipeline,
+      module: CapsensQontoWeb.Guardian,
+      error_handler: CapsensQontoWeb.AuthErrorHandler
+
+    plug Guardian.Plug.VerifySession, claims: %{"typ" => "access"}
+    plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
+    plug Guardian.Plug.EnsureAuthenticated
+    plug Guardian.Plug.LoadResource
+  end
+
   scope "/", CapsensQontoWeb do
     pipe_through :browser
 
-    get "/", SessionController, :new
-
-    resources "/apps", AppController, only: [:new, :create, :edit, :update]
+    resources "/sessions", SessionController, only: [:new]
     get "/slack/auth", SlackAuthController, :new
   end
 
-  scope "/api", CapsensQontoWeb do
-    pipe_through :api
+  scope "/", CapsensQontoWeb do
+    pipe_through [:browser, :auth]
 
-    get "/", Api.TestController, :index
+    resources "/integrations", IntegrationController, only: [:new, :create, :edit, :update]
+    get "/", IntegrationController, :new
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", CapsensQontoWeb do
-  #   pipe_through :api
-  # end
 end

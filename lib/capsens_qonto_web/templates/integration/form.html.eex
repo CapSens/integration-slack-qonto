@@ -27,7 +27,7 @@
     <%= label @f, :qonto_transaction_type do %>
       Quelles transactions sont concernées ?
     <% end %>
-    <%= multiple_select @f, :qonto_transaction_type, CapsensQonto.App.qonto_transaction_types, class: "form-control" %>
+    <%= multiple_select @f, :qonto_transaction_type, CapsensQonto.Integration.qonto_transaction_types, class: "form-control" %>
     <%= error_tag @f, :qonto_transaction_type %>
   </div>
 

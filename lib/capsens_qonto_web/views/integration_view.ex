@@ -1,9 +1,9 @@
-defmodule CapsensQontoWeb.AppView do
+defmodule CapsensQontoWeb.IntegrationView do
   use CapsensQontoWeb, :view
 
-  def qonto_sample(app) do
+  def qonto_sample(integration) do
     result =
-      CapsensQonto.Transactions.list(app.qonto_identifier, app.qonto_secret_key, app.qonto_iban)
+      CapsensQonto.Transactions.list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban)
       |> List.first
 
     case result do

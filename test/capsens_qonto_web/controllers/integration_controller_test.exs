@@ -1,4 +1,4 @@
-defmodule CapsensQontoWeb.AppControllerTest do
+defmodule CapsensQontoWeb.IntegrationControllerTest do
   use CapsensQontoWeb.ConnCase
 
   test "GET /", %{conn: conn} do

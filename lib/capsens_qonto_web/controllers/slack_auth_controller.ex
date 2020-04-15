@@ -24,18 +24,18 @@ defmodule CapsensQontoWeb.SlackAuthController do
 
   defp find_or_create_user(conn, _) do
     case CapsensQonto.User.find_by(slack_user_id: conn.assigns[:slack_user_id]) do
-      user ->
-        assign(conn, :user, user)
       nil ->
         case CapsensQonto.User.create(%{slack_user_id: conn.assigns[:slack_user_id], slack_access_token: conn.assigns[:slack_access_token]}) do
           {:ok, user} ->
             assign(conn, :user, user)
           {:error, %Ecto.Changeset{}} ->
-           conn
-           |> put_flash(:error, gettext("unknown_error"))
-           |> redirect(to: "/")
-           |> halt()
+            conn
+            |> put_flash(:error, gettext("unknown_error"))
+            |> redirect(to: "/")
+            |> halt()
         end
+      user ->
+        assign(conn, :user, user)
     end
   end
 
