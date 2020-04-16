@@ -7,7 +7,7 @@ defmodule CapsensQontoWeb.IntegrationController do
   end
 
   def create(conn, %{"integration" => integration_params}) do
-    case CapsensQonto.Integration.create(integration_params) do
+    case CapsensQonto.Integration.create(Map.put(integration_params, "user", conn.assigns[:current_user])) do
       {:ok, integration} ->
         conn
         |> put_flash(:info, pgettext("integration", "creation_success"))
@@ -19,14 +19,14 @@ defmodule CapsensQontoWeb.IntegrationController do
 
   def edit(conn, %{"id" => id}) do
     integration = CapsensQonto.Integration.get!(id)
-    changeset   = CapsensQonto.Integration.changeset(integration)
+    changeset   = CapsensQonto.Integration.update_changeset(integration)
 
     render(conn, "edit.html", integration: integration, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "integration" => integration_params}) do
     integration = CapsensQonto.Integration.get!(id)
-    changeset   = CapsensQonto.Integration.changeset(integration, integration_params)
+    changeset   = CapsensQonto.Integration.update_changeset(integration, integration_params)
 
     case CapsensQonto.Integration.update(changeset) do
       {:ok, integration} ->

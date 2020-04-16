@@ -11,9 +11,10 @@ defmodule CapsensQonto.Application do
       # Start the Ecto repository
       CapsensQonto.Repo,
       # Start the endpoint when the application starts
-      CapsensQontoWeb.Endpoint
+      CapsensQontoWeb.Endpoint,
       # Starts a worker by calling: CapsensQonto.Worker.start_link(arg)
       # {CapsensQonto.Worker, arg},
+      CapsensQonto.Scheduler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
