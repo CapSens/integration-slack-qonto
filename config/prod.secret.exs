@@ -34,6 +34,10 @@ config :capsens_qonto, CapsensQontoWeb.Guardian,
   issuer: "capsens_qonto",
   secret_key: secret_key_base
 
+config :capsens_qonto,
+  slack_client_id: System.get_env("SLACK_CLIENT_ID"),
+  slack_client_secret: System.get_env("SLACK_CLIENT_SECRET")
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
