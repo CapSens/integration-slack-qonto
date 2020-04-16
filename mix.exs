@@ -46,7 +46,8 @@ defmodule CapsensQonto.MixProject do
       {:httpoison, "~> 1.6"},
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:guardian, "~> 2.0"},
-      {:quantum, "~> 2.3"}
+      {:quantum, "~> 2.3"},
+      {:number, "~> 1.0"}
     ]
   end
 
