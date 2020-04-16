@@ -19,14 +19,14 @@ defmodule CapsensQontoWeb.IntegrationController do
 
   def edit(conn, %{"id" => id}) do
     integration = CapsensQonto.Integration.get!(id)
-    changeset   = CapsensQonto.Integration.qonto_changeset(integration)
+    changeset   = CapsensQonto.Integration.changeset(integration)
 
     render(conn, "edit.html", integration: integration, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "integration" => integration_params}) do
     integration = CapsensQonto.Integration.get!(id)
-    changeset   = CapsensQonto.Integration.qonto_changeset(integration, integration_params)
+    changeset   = CapsensQonto.Integration.changeset(integration, integration_params)
 
     case CapsensQonto.Integration.update(changeset) do
       {:ok, integration} ->

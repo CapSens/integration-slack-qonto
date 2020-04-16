@@ -12,6 +12,6 @@
       <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
     <% end %>
 
-    <%= qonto_sample(@app) %>
+    <%= qonto_sample(@integration) %>
   </div>
 </div>
