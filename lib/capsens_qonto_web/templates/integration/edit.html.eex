@@ -9,7 +9,7 @@
 
   <div>
     <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
-      <%= render "form.html", f: f %>
+      <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
     <% end %>
 
     <%= qonto_sample(@app) %>

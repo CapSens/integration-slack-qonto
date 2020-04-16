@@ -7,7 +7,7 @@
 
   <div>
     <%= form_for @changeset, Routes.integration_path(@conn, :create), fn(f) -> %>
-      <%= render "form.html", f: f %>
+      <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
     <% end %>
   </div>
 </div>

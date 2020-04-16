@@ -22,6 +22,7 @@ defmodule CapsensQontoWeb.Router do
     plug Guardian.Plug.VerifyHeader, claims: %{"typ" => "access"}
     plug Guardian.Plug.EnsureAuthenticated
     plug Guardian.Plug.LoadResource
+    plug CapsensQontoWeb.Plugs.CurrentUser
   end
 
   scope "/", CapsensQontoWeb do

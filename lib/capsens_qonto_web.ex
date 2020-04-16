@@ -40,6 +40,7 @@ defmodule CapsensQontoWeb do
       use Phoenix.HTML
 
       import CapsensQontoWeb.ErrorHelpers
+      import CapsensQontoWeb.ViewHelpers
       import CapsensQontoWeb.Gettext
       alias CapsensQontoWeb.Router.Helpers, as: Routes
     end

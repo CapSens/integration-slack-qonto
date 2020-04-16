@@ -23,4 +23,21 @@ defmodule CapsensQonto.Slack do
         {:error, response}
     end
   end
+
+  def list_channels(access_token) do
+    case response =
+      HTTPoison.get("https://slack.com/api/conversations.list", [], params: %{token: access_token, types: "public_channel,private_channel"}) do
+      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        case payload = Jason.decode!(body) do
+          %{"ok" => true} ->
+            {:ok, channels: Enum.map(payload["channels"], fn(chan) -> chan["name"] end)}
+          %{"ok" => false, "error" => error} ->
+            {:error, error}
+          _ ->
+            {:error, payload}
+        end
+      _ ->
+        {:error, response}
+    end
+  end
 end

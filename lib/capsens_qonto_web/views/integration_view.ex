@@ -13,4 +13,9 @@ defmodule CapsensQontoWeb.IntegrationView do
         render("no_sample.html")
     end
   end
+
+  def slack_channels(user) do
+    {:ok, channels: channels} = CapsensQonto.Slack.list_channels(user.slack_access_token)
+    channels
+  end
 end

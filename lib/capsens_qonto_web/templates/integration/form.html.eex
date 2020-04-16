@@ -1,6 +1,14 @@
 <div class="card-body">
   <div class="form-group">
     <%= label @f, :qonto_identifier do %>
+      Sélectionnez le channel Slack sur lequel vous souhaitez être notifié de nouveaux virements.
+    <% end %>
+    <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control" %>
+    <%= error_tag @f, :slack_channel %>
+  </div>
+
+  <div class="form-group">
+    <%= label @f, :qonto_identifier do %>
       Collez ici votre identifiant. Votre identifiant n'est pas votre e-mail, c'est le champ "identifiant" qui se trouve dans votre espace Qonto, dans "Paramètres"> "API". Il se termine par 4 chiffres.
     <% end %>
     <%= text_input @f, :qonto_identifier, class: "form-control" %>
