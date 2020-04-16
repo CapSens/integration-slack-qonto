@@ -17,7 +17,7 @@ defmodule CapsensQontoWeb.SlackAuthController do
       {:error, error} ->
         conn
         |> put_flash(:error, error)
-        |> redirect(to: "/")
+        |> redirect(to: Routes.session_path(conn, :new))
         |> halt()
     end
   end
