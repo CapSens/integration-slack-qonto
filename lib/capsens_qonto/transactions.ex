@@ -29,6 +29,7 @@ defmodule CapsensQonto.Transactions do
         integration.last_transaction_id == nil ->
           changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
           CapsensQonto.Integration.update(changeset)
+          report_transaction(integration, last_transaction)
         last_transaction["transaction_id"] != integration.last_transaction_id ->
           report_new_transactions(integration)
           changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
@@ -46,16 +47,20 @@ defmodule CapsensQonto.Transactions do
     |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
 
     Enum.each(new_transactions, fn(transaction) ->
-      amount    = Number.Delimit.number_to_delimited(transaction["amount"])
-      direction = if transaction["side"] == "credit", do: "entrant", else: "sortant"
-      message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
-
-      CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
+      report_transaction(integration, transaction)
       :timer.sleep(500)
     end)
 
     if transactions["meta"]["next_page"] && Enum.count(new_transactions) == 100 do
       report_new_transactions(integration, current_page + 1)
     end
+  end
+
+  defp report_transaction(integration, transaction) do
+    amount    = Number.Delimit.number_to_delimited(transaction["amount"])
+    direction = if transaction["side"] == "credit", do: "entrant", else: "sortant"
+    message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
+
+    CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
   end
 end
