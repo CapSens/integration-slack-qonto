@@ -1,7 +1,18 @@
+<div class="card my-3 text-center">
+  <div class="card-header" id="slack">
+    <h5 class="mb-0 text-center">
+      Étape 1 : Connectez votre compte Slack
+    </h5>
+  </div>
+
+  <div>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-header" id="qonto">
-    <h5 class="mb-0">
-      Connexion à Qonto
+    <h5 class="mb-0 text-center">
+      Étape 2 : Connectez votre compte Qonto
     </h5>
   </div>
 

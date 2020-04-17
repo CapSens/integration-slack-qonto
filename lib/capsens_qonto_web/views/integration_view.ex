@@ -16,7 +16,11 @@ defmodule CapsensQontoWeb.IntegrationView do
   end
 
   def slack_channels(user) do
-    {:ok, channels: channels} = CapsensQonto.Slack.list_channels(user.slack_access_token)
-    channels
+    case CapsensQonto.Slack.list_channels(user.slack_access_token) do
+      {:ok, channels: channels} ->
+        channels
+      {:error, error} ->
+        []
+    end
   end
 end

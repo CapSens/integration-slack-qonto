@@ -13,6 +13,7 @@ import "phoenix_html";
 import $ from "jquery";
 import "bootstrap";
 import toastr from "toastr";
+import "select2";
 
 toastr.options.toastClass = 'toastr';
 
@@ -22,6 +23,7 @@ if ($('.flash.info')[0]) {
 if ($('.flash.error')[0]) {
   toastr["error"]($('.flash.error').html());
 }
+$('#integration_qonto_transaction_type').select2();
 
 // Import local files
 //
