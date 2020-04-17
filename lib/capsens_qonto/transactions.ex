@@ -27,13 +27,11 @@ defmodule CapsensQonto.Transactions do
 
       cond do
         integration.last_transaction_id == nil ->
-          changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
-          CapsensQonto.Integration.update(changeset)
+          update_integration_last_transaction_id(integration, last_transaction)
           report_transaction(integration, last_transaction)
         last_transaction["transaction_id"] != integration.last_transaction_id ->
           report_new_transactions(integration)
-          changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
-          CapsensQonto.Integration.update(changeset)
+          update_integration_last_transaction_id(integration, last_transaction)
         true ->
           "No new transactions, nothing to do"
       end
@@ -62,5 +60,10 @@ defmodule CapsensQonto.Transactions do
     message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
 
     CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
+  end
+
+  defp update_integration_last_transaction_id(integration, transaction) do
+    changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
+    CapsensQonto.Integration.update(changeset)
   end
 end
