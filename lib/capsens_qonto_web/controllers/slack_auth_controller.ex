@@ -35,6 +35,7 @@ defmodule CapsensQontoWeb.SlackAuthController do
             |> halt()
         end
       user ->
+        CapsensQonto.User.update(CapsensQonto.User.changeset(user, %{slack_access_token: conn.assigns[:slack_access_token]}))
         assign(conn, :user, user)
     end
   end
