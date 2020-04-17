@@ -41,11 +41,14 @@ defmodule CapsensQonto.Transactions do
 
   defp report_new_transactions(integration, current_page \\ 1) do
     transactions     = list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
-    new_transactions = Enum.take_while(transactions["transactions"], fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
+    new_transactions =
+      Enum.take_while(transactions["transactions"], fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
+    |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
 
     Enum.each(new_transactions, fn(transaction) ->
-      amount = Number.Delimit.number_to_delimited(transaction["amount"])
-      message = "Un virement entrant/sortant de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
+      amount    = Number.Delimit.number_to_delimited(transaction["amount"])
+      direction = if transaction["side"] == "credit", do: "entrant", else: "sortant"
+      message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
 
       CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
       :timer.sleep(500)
