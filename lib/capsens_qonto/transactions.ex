@@ -23,6 +23,7 @@ defmodule CapsensQonto.Transactions do
       last_transaction =
         list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
         |> Map.fetch!("transactions")
+        |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
         |> List.first
 
       cond do
@@ -55,11 +56,13 @@ defmodule CapsensQonto.Transactions do
   end
 
   defp report_transaction(integration, transaction) do
-    amount    = Number.Delimit.number_to_delimited(transaction["amount"])
-    direction = if transaction["side"] == "credit", do: "entrant", else: "sortant"
-    message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
+    if transaction do
+      amount    = Number.Delimit.number_to_delimited(transaction["amount"])
+      direction = if transaction["side"] == "credit", do: "entrant", else: "sortant"
+      message   = "Un virement #{direction} de #{amount} #{transaction["currency"]} a été effectué. Label : #{transaction["label"]}"
 
-    CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
+      CapsensQonto.Slack.send_message(message, integration.slack_channel, integration.user.slack_access_token)
+    end
   end
 
   defp update_integration_last_transaction_id(integration, transaction) do

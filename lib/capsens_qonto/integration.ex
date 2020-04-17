@@ -40,7 +40,10 @@ defmodule CapsensQonto.Integration do
   end
 
   def qonto_transaction_types do
-    ["Crédit", "Débit"]
+    [
+      {"Crédit", "credit"},
+      {"Débit", "debit"},
+    ]
   end
 
   def list do
