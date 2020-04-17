@@ -63,7 +63,7 @@ defmodule CapsensQonto.Transactions do
   end
 
   defp update_integration_last_transaction_id(integration, transaction) do
-    changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => last_transaction["transaction_id"]}, [:last_transaction_id])
+    changeset = integration |> Ecto.Changeset.cast(%{"last_transaction_id" => transaction["transaction_id"]}, [:last_transaction_id])
     CapsensQonto.Integration.update(changeset)
   end
 end
