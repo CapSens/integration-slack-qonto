@@ -9,6 +9,8 @@ defmodule CapsensQonto.User do
     field :slack_access_token, :string
     field :slack_user_id, :string
 
+    has_many :integrations, CapsensQonto.Integration
+
     timestamps()
   end
 
@@ -27,6 +29,10 @@ defmodule CapsensQonto.User do
 
   def list do
     Repo.all(User)
+  end
+
+  def get(id) do
+    Repo.get(User, id)
   end
 
   def get!(id) do

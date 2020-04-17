@@ -6,6 +6,6 @@
   </div>
 
   <div class="card-body">
-    <a href="https://slack.com/oauth/authorize?scope=channels:read,chat:write:bot&client_id=12120262387.1056466118613&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+    <a href="https://slack.com/oauth/authorize?scope=channels:read,chat:write:bot&client_id=<%= Application.get_env(:capsens_qonto, :slack_client_id) %>&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
   </div>
 </div>

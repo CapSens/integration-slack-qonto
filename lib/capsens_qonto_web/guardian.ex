@@ -9,8 +9,13 @@ defmodule CapsensQontoWeb.Guardian do
 
   def resource_from_claims(claims) do
     id       = claims["sub"]
-    resource = CapsensQonto.User.get!(id)
+    resource = CapsensQonto.User.get(id)
 
-    {:ok, resource}
+    case resource do
+      nil ->
+        {:error, :not_authed}
+      _ ->
+        {:ok, resource}
+    end
   end
 end

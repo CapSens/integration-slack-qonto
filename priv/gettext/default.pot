@@ -11,18 +11,18 @@ msgid ""
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/slack_controller.ex:10
-msgid "slack_success"
+#: lib/capsens_qonto_web/controllers/slack_auth_controller.ex:33
+msgid "unknown_error"
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/app_controller.ex:13
-msgctxt "app"
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:13
+msgctxt "integration"
 msgid "creation_success"
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/app_controller.ex:34
-msgctxt "app"
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:34
+msgctxt "integration"
 msgid "update_success"
 msgstr ""
