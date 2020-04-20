@@ -42,4 +42,13 @@ defmodule CapsensQontoWeb.IntegrationController do
         render(conn, "edit.html", integration: integration, changeset: changeset)
     end
   end
+
+  def delete(conn, %{"id" => id}) do
+    integration = CapsensQonto.Integration.get!(id)
+    CapsensQonto.Repo.delete(integration)
+
+    conn
+    |> put_flash(:info, pgettext("integration", "deletion_success"))
+    |> redirect(to: Routes.integration_path(conn, :index))
+  end
 end

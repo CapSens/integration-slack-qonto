@@ -18,10 +18,11 @@
             <i class="fa fa-edit"></i>
             Éditer
           <% end %>
-          <button type="button" class="btn btn-danger">
+
+          <%= link(to: Routes.integration_path(@conn, :delete, integration.id), class: "btn btn-danger", method: :delete) do %>
             <i class="fa fa-trash"></i>
             Supprimer
-          </button>
+          <% end %>
         </td>
       </tr>
     <% end) %>
