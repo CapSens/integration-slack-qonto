@@ -1,6 +1,11 @@
 defmodule CapsensQontoWeb.IntegrationController do
   use CapsensQontoWeb, :controller
 
+  def index(conn, _params) do
+    integrations = CapsensQonto.Integration.list()
+    render(conn, "index.html", integrations: integrations)
+  end
+
   def new(conn, _params) do
     changeset = CapsensQonto.Integration.changeset(%CapsensQonto.Integration{})
     render(conn, "new.html", changeset: changeset)

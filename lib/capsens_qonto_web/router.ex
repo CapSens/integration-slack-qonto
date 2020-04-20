@@ -37,16 +37,6 @@ defmodule CapsensQontoWeb.Router do
     pipe_through [:browser, :auth]
 
     resources "/integrations", IntegrationController, only: [:new, :create, :edit, :update]
-    get "/", IntegrationController, :new
-  end
-
-  # TODO: remove
-  def handle_errors(conn, err) do
-    IO.inspect "Something happened when handling web request for the user:"
-    IO.inspect conn.assigns.current_user
-    IO.inspect "The error was:"
-    IO.inspect err
-
-    conn
+    get "/", IntegrationController, :index
   end
 end

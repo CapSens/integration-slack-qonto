@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">IBAN</th>
+      <th scope="col">Channel</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @integrations |> Enum.with_index |> Enum.map(fn {integration, i} -> %>
+      <tr>
+        <th scope="row"><%= i + 1 %></th>
+        <td><%= integration.qonto_iban %></td>
+        <td><%= integration.slack_channel %></td>
+        <td>
+          <button type="button" class="btn btn-primary">
+            <i class="fa fa-eye"></i>
+            Primary
+          </button>
+        </td>
+      </tr>
+    <% end) %>
+  </tbody>
+</table>
