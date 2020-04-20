@@ -15,8 +15,12 @@
         <td><%= integration.slack_channel %></td>
         <td>
           <button type="button" class="btn btn-primary">
-            <i class="fa fa-eye"></i>
-            Primary
+            <i class="fa fa-edit"></i>
+            Éditer
+          </button>
+          <button type="button" class="btn btn-danger">
+            <i class="fa fa-trash"></i>
+            Supprimer
           </button>
         </td>
       </tr>
