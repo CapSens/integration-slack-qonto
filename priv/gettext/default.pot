@@ -16,13 +16,19 @@ msgid "unknown_error"
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/integration_controller.ex:13
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:18
 msgctxt "integration"
 msgid "creation_success"
 msgstr ""
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/integration_controller.ex:34
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:39
 msgctxt "integration"
 msgid "update_success"
+msgstr ""
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:51
+msgctxt "integration"
+msgid "deletion_success"
 msgstr ""
