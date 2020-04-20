@@ -1,22 +1,58 @@
-<div class="card my-3">
-  <div class="card-header" id="slack">
-    <h5 class="mb-0 text-center">
-      Étape 1 : Connectez votre compte Slack
-    </h5>
+<div class="container">
+  <div class="row justify-content-center my-3">
+    <div class="col-6 text-center">
+      <h2>Intégrez Qonto à Slack en 2 min</h2>
+    </div>
   </div>
 
-  <div class="card-body text-center">
-    <a href="https://slack.com/oauth/authorize?scope=channels:read,groups:read,chat:write:bot&client_id=<%= Application.get_env(:capsens_qonto, :slack_client_id) %>&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
-  </div>
-</div>
 
-<div class="card">
-  <div class="card-header" id="qonto">
-    <h5 class="mb-0 text-center">
-      Étape 2 : Connectez votre compte Qonto
-    </h5>
+  <div class="row justify-content-center my-3">
+    <div class="col-8 text-center">
+      <h4>Ce site vous permet d'envoyer vos flux financiers Qonto (entrant et/ou sortant) dans un channel Slack</h4>
+    </div>
   </div>
 
-  <div>
+  <div class="row justify-content-center my-5">
+    <div class="col-12">
+      <h3>
+        <svg class="bi bi-lock-fill" width="0.8em" height="0.8em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <rect width="11" height="9" x="2.5" y="7" rx="2"/>
+          <path fill-rule="evenodd" d="M4.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z" clip-rule="evenodd"/>
+        </svg>
+        Le site est totalement sécurisé et respecte vos données personnelles. Son code est opensource consultable ici : mettre le lien</h3>
+    </div>
+  </div>
+  <div class="card my-3">
+    <div class="card-header" id="slack">
+      <h5 class="mb-0 text-center">
+        Étape 1 : Connectez votre compte Slack
+      </h5>
+    </div>
+
+    <div class="card-body text-center">
+      <a href="https://slack.com/oauth/authorize?scope=channels:read,groups:read,chat:write:bot&client_id=<%= Application.get_env(:capsens_qonto, :slack_client_id) %>&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header" id="qonto">
+      <h5 class="mb-0 text-center">
+        Étape 2 : Connectez votre compte Qonto
+      </h5>
+    </div>
+    <div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center my-5">
+    <div class="col-12">
+      <h4 class="text-center">
+        Made with
+        <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" clip-rule="evenodd"/>
+        </svg>
+        by <%= link("CapSens", to: "https://capsens.eu/") %> l'agence web des fintechs
+      </h4>
+    </div>
   </div>
 </div>
