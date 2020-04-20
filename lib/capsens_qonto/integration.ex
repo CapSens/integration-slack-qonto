@@ -11,6 +11,7 @@ defmodule CapsensQonto.Integration do
     field :qonto_secret_key, :string
     field :qonto_transaction_type, {:array, :string}
     field :slack_channel, :string
+    field :last_transaction_id, :string
 
     belongs_to :user, CapsensQonto.User
 
@@ -39,7 +40,10 @@ defmodule CapsensQonto.Integration do
   end
 
   def qonto_transaction_types do
-    ["Crédit", "Débit"]
+    [
+      {"Crédit", "credit"},
+      {"Débit", "debit"},
+    ]
   end
 
   def list do
