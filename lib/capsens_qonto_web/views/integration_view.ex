@@ -13,6 +13,8 @@ defmodule CapsensQontoWeb.IntegrationView do
       nil ->
         render("no_sample.html")
     end
+  rescue
+    _ -> render("no_sample.html")
   end
 
   def slack_channels(user) do

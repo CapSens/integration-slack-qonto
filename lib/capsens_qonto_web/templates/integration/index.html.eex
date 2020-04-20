@@ -10,14 +10,14 @@
   <tbody>
     <%= @integrations |> Enum.with_index |> Enum.map(fn {integration, i} -> %>
       <tr>
-        <th scope="row"><%= i + 1 %></th>
-        <td><%= integration.qonto_iban %></td>
-        <td><%= integration.slack_channel %></td>
-        <td>
-          <button type="button" class="btn btn-primary">
+        <th scope="row" class="align-middle"><%= i + 1 %></th>
+        <td class="align-middle"><%= integration.qonto_iban %></td>
+        <td class="align-middle"><%= integration.slack_channel %></td>
+        <td class="align-middle">
+          <%= link(to: Routes.integration_path(@conn, :edit, integration.id), class: "btn btn-primary") do %>
             <i class="fa fa-edit"></i>
             Éditer
-          </button>
+          <% end %>
           <button type="button" class="btn btn-danger">
             <i class="fa fa-trash"></i>
             Supprimer
