@@ -26,7 +26,9 @@
       <div class="container">
         <div class="row justify-content-center my-3">
           <div class="col-6 text-center">
-            <h2>Intégrez Qonto à Slack en 2 min</h2>
+            <%= link(to: "/") do %>
+              <h2>Intégrez Qonto à Slack en 2 min</h2>
+            <% end %>
           </div>
         </div>
 

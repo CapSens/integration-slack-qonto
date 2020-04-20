@@ -23,7 +23,7 @@ if ($('.flash.info')[0]) {
 if ($('.flash.error')[0]) {
   toastr["error"]($('.flash.error').html());
 }
-$('#integration_qonto_transaction_type').select2();
+$('select').select2();
 
 // Import local files
 //

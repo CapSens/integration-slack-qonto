@@ -2,7 +2,7 @@ defmodule CapsensQontoWeb.IntegrationController do
   use CapsensQontoWeb, :controller
 
   def index(conn, _params) do
-    integrations = CapsensQonto.Integration.list()
+    integrations = CapsensQonto.Integration.list(conn.assigns[:current_user].id)
     render(conn, "index.html", integrations: integrations)
   end
 
@@ -23,14 +23,14 @@ defmodule CapsensQontoWeb.IntegrationController do
   end
 
   def edit(conn, %{"id" => id}) do
-    integration = CapsensQonto.Integration.get!(id)
+    integration = CapsensQonto.Repo.get_by!(CapsensQonto.Integration, user_id: conn.assigns[:current_user].id, id: id)
     changeset   = CapsensQonto.Integration.update_changeset(integration)
 
     render(conn, "edit.html", integration: integration, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "integration" => integration_params}) do
-    integration = CapsensQonto.Integration.get!(id)
+    integration = CapsensQonto.Repo.get_by!(CapsensQonto.Integration, user_id: conn.assigns[:current_user].id, id: id)
     changeset   = CapsensQonto.Integration.update_changeset(integration, integration_params)
 
     case CapsensQonto.Integration.update(changeset) do
@@ -44,7 +44,7 @@ defmodule CapsensQontoWeb.IntegrationController do
   end
 
   def delete(conn, %{"id" => id}) do
-    integration = CapsensQonto.Integration.get!(id)
+    integration = CapsensQonto.Repo.get_by!(CapsensQonto.Integration, user_id: conn.assigns[:current_user].id, id: id)
     CapsensQonto.Repo.delete(integration)
 
     conn

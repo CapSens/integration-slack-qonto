@@ -1,3 +1,8 @@
+<%= link(to: Routes.integration_path(@conn, :new), class: "btn btn-success mb-4") do %>
+  <i class="fa fa-plus"></i>
+  Créer
+<% end %>
+
 <table class="table">
   <thead>
     <tr>

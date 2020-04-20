@@ -1,6 +1,7 @@
 defmodule CapsensQonto.Integration do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
 
   alias CapsensQonto.Integration
   alias CapsensQonto.Repo
@@ -46,8 +47,8 @@ defmodule CapsensQonto.Integration do
     ]
   end
 
-  def list do
-    Repo.all(Integration)
+  def list(id) do
+    Repo.all(from i in Integration, where: i.user_id == ^id)
   end
 
   def get!(id) do
