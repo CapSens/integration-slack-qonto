@@ -23,7 +23,41 @@
         <span class="flash d-none error"><%= get_flash(@conn, :error) %></span>
       <% end %>
 
-      <%= render @view_module, @view_template, assigns %>
+      <div class="container">
+        <div class="row justify-content-center my-3">
+          <div class="col-6 text-center">
+            <%= link(to: "/") do %>
+              <h2>Intégrez Qonto à Slack en 2 min</h2>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="row justify-content-center my-3">
+          <div class="col-8 text-center">
+            <h4>Ce site vous permet d'envoyer vos flux financiers Qonto (entrant et/ou sortant) dans un channel Slack</h4>
+          </div>
+        </div>
+
+        <div class="row justify-content-center my-5">
+          <div class="col-12">
+            <h3>
+              <i class="fas fa-lock"></i>
+              Le site est totalement sécurisé et respecte vos données personnelles. Son code est opensource consultable ici : mettre le lien</h3>
+          </div>
+        </div>
+
+        <%= render @view_module, @view_template, assigns %>
+
+        <div class="row justify-content-center my-5">
+          <div class="col-12">
+            <h4 class="text-center">
+              Made with
+              <i class="fas fa-heart"></i>
+              by <%= link("CapSens", to: "https://capsens.eu/") %> l'agence web des fintechs
+            </h4>
+          </div>
+        </div>
+      </div>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>

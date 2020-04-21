@@ -14,16 +14,22 @@ msgstr ""
 #, elixir-format
 #: lib/capsens_qonto_web/controllers/slack_auth_controller.ex:33
 msgid "unknown_error"
-msgstr ""
+msgstr "Unknown error"
 
-#, elixir-format, fuzzy
-#: lib/capsens_qonto_web/controllers/integration_controller.ex:13
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:18
 msgctxt "integration"
 msgid "creation_success"
 msgstr "Integration successfully created"
 
-#, elixir-format, fuzzy
-#: lib/capsens_qonto_web/controllers/integration_controller.ex:34
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:39
 msgctxt "integration"
 msgid "update_success"
 msgstr "Integration successfully updated"
+
+#, elixir-format, fuzzy
+#: lib/capsens_qonto_web/controllers/integration_controller.ex:51
+msgctxt "integration"
+msgid "deletion_success"
+msgstr "Integration deleted"

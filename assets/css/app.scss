@@ -1,0 +1,17 @@
+/* This file is for your main application css. */
+
+@import "custom";
+
+@import "~bootstrap/scss/bootstrap";
+
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/regular";
+
+@import "~toastr/build/toastr.min.css";
+@import "~select2/dist/css/select2.min.css";
+
+pre {
+  background-color: #e9e9e9;
+}
