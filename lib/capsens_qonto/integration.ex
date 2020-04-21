@@ -51,6 +51,10 @@ defmodule CapsensQonto.Integration do
     Repo.all(from i in Integration, where: i.user_id == ^id)
   end
 
+  def list() do
+    Repo.all(Integration)
+  end
+
   def get!(id) do
     Repo.get!(Integration, id)
   end
