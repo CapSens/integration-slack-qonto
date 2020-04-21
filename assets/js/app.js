@@ -48,12 +48,13 @@ const updateIbanSelect = () => {
         });
       },
       error: function(xhr) {
+        toastr.error("Erreur lors de la récupération de votre compte Qonto. Veuillez vérifier vos informations");
       }
     });
   } else {
     $('#integration_qonto_iban').parent("div").addClass("d-none");
   }
-}
+};
 
 $('body').on('change', '#integration_qonto_identifier', updateIbanSelect);
 $('body').on('change', '#integration_qonto_secret_key', updateIbanSelect);

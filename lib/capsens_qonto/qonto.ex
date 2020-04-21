@@ -25,8 +25,6 @@ defmodule CapsensQonto.Qonto do
           _ ->
             []
         end
-      _ ->
-        []
     end
   end
 
