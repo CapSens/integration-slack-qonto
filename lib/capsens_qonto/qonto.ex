@@ -1,7 +1,7 @@
-defmodule CapsensQonto.Transactions do
-  def list(identifier, secret_key, iban, per_page \\ 100, current_page \\ 1) do
+defmodule CapsensQonto.Qonto do
+  def list_transactions(identifier, secret_key, iban, per_page \\ 100, current_page \\ 1) do
     case HTTPoison.get!(
-          "https://thirdparty.qonto.eu/v2/transactions",
+          "https://thirdparty.qonto.eu/v2/organizations/#{identifier}",
           ["Authorization": "#{identifier}:#{secret_key}"],
           params: %{
             iban: iban,
@@ -11,6 +11,20 @@ defmodule CapsensQonto.Transactions do
         ) do
       %HTTPoison.Response{status_code: 200, body: body} ->
         Jason.decode!(body)
+      _ ->
+        []
+    end
+  end
+
+  def list_bank_accounts(identifier, secret_key) do
+    case HTTPoison.get!("https://thirdparty.qonto.eu/v2/organizations/#{identifier}", ["Authorization": "#{identifier}:#{secret_key}"]) do
+      %HTTPoison.Response{status_code: 200, body: body} ->
+        case payload = Jason.decode!(body) do
+          %{"organization" => %{"bank_accounts" = bank_accounts}} ->
+            bank_accounts
+          _ ->
+            []
+        end
       _ ->
         []
     end
