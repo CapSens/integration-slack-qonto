@@ -34,7 +34,7 @@ defmodule CapsensQonto.Slack do
       if chan.user do
         %{id: chan.id, name: extract_user_name(users, chan.user)}
       else
-        chan
+        %{id: chan.id, name: chan.name}
       end
     end)
 
@@ -44,20 +44,11 @@ defmodule CapsensQonto.Slack do
       {:error, gettext("unknown_error")}
   end
 
-  def extract_user_name(users, user_id) do
-    case user = Enum.find(users, fn(u) -> u.id == user_id end) do
-      nil ->
-        "erreur"
-      _ ->
-        user.name
-    end
-  end
-
   def send_message(message, channel, access_token) do
     HTTPoison.get!("https://slack.com/api/chat.postMessage", [], params: %{token: access_token, channel: channel, text: message})
   end
 
-  def fetch_channels(access_token, cursor \\ nil, result \\ []) do
+  defp fetch_channels(access_token, cursor \\ nil, result \\ []) do
     case response = HTTPoison.get!(
     "https://slack.com/api/conversations.list",
     [],
@@ -66,9 +57,9 @@ defmodule CapsensQonto.Slack do
       %HTTPoison.Response{status_code: 200, body: body} ->
         case payload = Jason.decode!(body) do
           %{"ok" => true, "response_metadata" => %{"next_cursor" => ""}} ->
-            {:ok, channels: result ++ Enum.map(payload["channels"], fn(chan) -> %{id: chan["id"], name: chan["name"], user: chan["user"]} end)}
+            {:ok, channels: result ++ channels_name(payload["channels"])}
           %{"ok" => true, "response_metadata" => %{"next_cursor" => next_cursor}} ->
-            fetch_channels(access_token, next_cursor, result ++ Enum.map(payload["channels"], fn(chan) -> %{id: chan["id"], name: chan["name"], user: chan["user"]} end))
+            fetch_channels(access_token, next_cursor, result ++ channels_name(payload["channels"]))
           %{"ok" => false, "error" => error} ->
             {:error, error}
           _ ->
@@ -79,7 +70,7 @@ defmodule CapsensQonto.Slack do
     end
   end
 
-  def fetch_users(access_token) do
+  defp fetch_users(access_token) do
     case response = HTTPoison.get!("https://slack.com/api/users.list", [], params: %{token: access_token}) do
       %HTTPoison.Response{status_code: 200, body: body} ->
         case payload = Jason.decode!(body) do
@@ -92,6 +83,19 @@ defmodule CapsensQonto.Slack do
         end
       _ ->
         {:error, response}
+    end
+  end
+
+  defp channels_name(channels) do
+    Enum.map(channels, fn(chan) -> %{id: chan["id"], name: chan["name"], user: chan["user"]} end)
+  end
+
+  defp extract_user_name(users, user_id) do
+    case user = Enum.find(users, fn(u) -> u.id == user_id end) do
+      nil ->
+        "erreur"
+      _ ->
+        user.name
     end
   end
 end
