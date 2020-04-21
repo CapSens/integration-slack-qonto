@@ -37,6 +37,8 @@ defmodule CapsensQontoWeb.Router do
     pipe_through [:browser, :auth]
 
     resources "/integrations", IntegrationController, only: [:new, :create, :edit, :update, :delete]
+    resources "/bank_accounts", BankAccountController, only: [:index]
+
     get "/", IntegrationController, :index
   end
 end

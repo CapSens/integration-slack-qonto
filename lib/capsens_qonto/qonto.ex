@@ -1,7 +1,7 @@
 defmodule CapsensQonto.Qonto do
   def list_transactions(identifier, secret_key, iban, per_page \\ 100, current_page \\ 1) do
     case HTTPoison.get!(
-          "https://thirdparty.qonto.eu/v2/organizations/#{identifier}",
+          "https://thirdparty.qonto.eu/v2/transactions",
           ["Authorization": "#{identifier}:#{secret_key}"],
           params: %{
             iban: iban,
@@ -20,7 +20,7 @@ defmodule CapsensQonto.Qonto do
     case HTTPoison.get!("https://thirdparty.qonto.eu/v2/organizations/#{identifier}", ["Authorization": "#{identifier}:#{secret_key}"]) do
       %HTTPoison.Response{status_code: 200, body: body} ->
         case payload = Jason.decode!(body) do
-          %{"organization" => %{"bank_accounts" = bank_accounts}} ->
+          %{"organization" => %{"bank_accounts" => bank_accounts}} ->
             bank_accounts
           _ ->
             []
@@ -35,7 +35,7 @@ defmodule CapsensQonto.Qonto do
 
     Enum.map(integrations, fn(integration) ->
       last_transaction =
-        list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
+        list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
         |> Map.fetch!("transactions")
         |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
         |> List.first
@@ -54,7 +54,7 @@ defmodule CapsensQonto.Qonto do
   end
 
   defp report_new_transactions(integration, current_page \\ 1) do
-    transactions     = list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
+    transactions     = list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
     new_transactions =
       Enum.take_while(transactions["transactions"], fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
     |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)

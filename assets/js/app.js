@@ -23,9 +23,38 @@ if ($('.flash.info')[0]) {
 if ($('.flash.error')[0]) {
   toastr["error"]($('.flash.error').html());
 }
+
 $('select').select2();
 
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"
+const updateIbanSelect = () => {
+  if ($('#integration_qonto_identifier').val() && $('#integration_qonto_secret_key').val()) {
+    $('#integration_qonto_iban').parent("div").removeClass("d-none");
+
+    $.ajax({
+      url: "/bank_accounts",
+      data: {
+        identifier: $('#integration_qonto_identifier').val(),
+        secret_key: $('#integration_qonto_secret_key').val()
+      },
+      success: function(response) {
+        const anySelected = !!($('#integration_qonto_iban').val());
+
+        response.forEach((iban) => {
+          if (!$('#integration_qonto_iban').find(`option[value="${iban}"]`).length) {
+            let newOption = new Option(iban, iban, !anySelected, !anySelected);
+
+            $('#integration_qonto_iban').append(newOption).trigger('change');
+          }
+        });
+      },
+      error: function(xhr) {
+      }
+    });
+  } else {
+    $('#integration_qonto_iban').parent("div").addClass("d-none");
+  }
+}
+
+$('body').on('change', '#integration_qonto_identifier', updateIbanSelect);
+$('body').on('change', '#integration_qonto_secret_key', updateIbanSelect);
+updateIbanSelect();
