@@ -8,7 +8,6 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">IBAN</th>
-      <th scope="col">Channel</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -17,7 +16,6 @@
       <tr>
         <th scope="row" class="align-middle"><%= i + 1 %></th>
         <td class="align-middle"><%= integration.qonto_iban %></td>
-        <td class="align-middle"><%= integration.slack_channel %></td>
         <td class="align-middle">
           <%= link(to: Routes.integration_path(@conn, :edit, integration.id), class: "btn btn-primary") do %>
             <i class="fa fa-edit"></i>

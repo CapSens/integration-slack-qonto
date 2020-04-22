@@ -20,7 +20,7 @@ defmodule CapsensQontoWeb.IntegrationView do
   def slack_channels(user) do
     case CapsensQonto.Slack.list_channels(user.slack_access_token) do
       {:ok, channels: channels} ->
-        channels
+        Enum.map(channels, fn(chan) -> {chan.name, chan.id} end)
       {:error, error} ->
         []
     end
