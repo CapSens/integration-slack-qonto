@@ -1,5 +1,5 @@
-defmodule CapsensQonto.Transactions do
-  def list(identifier, secret_key, iban, per_page \\ 100, current_page \\ 1) do
+defmodule CapsensQonto.Qonto do
+  def list_transactions(identifier, secret_key, iban, per_page \\ 100, current_page \\ 1) do
     case HTTPoison.get!(
           "https://thirdparty.qonto.eu/v2/transactions",
           ["Authorization": "#{identifier}:#{secret_key}"],
@@ -16,12 +16,24 @@ defmodule CapsensQonto.Transactions do
     end
   end
 
+  def list_bank_accounts(identifier, secret_key) do
+    case HTTPoison.get!("https://thirdparty.qonto.eu/v2/organizations/#{identifier}", ["Authorization": "#{identifier}:#{secret_key}"]) do
+      %HTTPoison.Response{status_code: 200, body: body} ->
+        case payload = Jason.decode!(body) do
+          %{"organization" => %{"bank_accounts" => bank_accounts}} ->
+            bank_accounts
+          _ ->
+            []
+        end
+    end
+  end
+
   def send_report do
     integrations = CapsensQonto.Integration.list |> CapsensQonto.Repo.preload(:user)
 
     Enum.map(integrations, fn(integration) ->
       last_transaction =
-        list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
+        list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
         |> Map.fetch!("transactions")
         |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
         |> List.first
@@ -40,7 +52,7 @@ defmodule CapsensQonto.Transactions do
   end
 
   defp report_new_transactions(integration, current_page \\ 1) do
-    transactions     = list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
+    transactions     = list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
     new_transactions =
       Enum.take_while(transactions["transactions"], fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
     |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)

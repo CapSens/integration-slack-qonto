@@ -3,7 +3,7 @@ defmodule CapsensQontoWeb.IntegrationView do
 
   def qonto_sample(integration) do
     result =
-      CapsensQonto.Transactions.list(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
+      CapsensQonto.Qonto.list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
       |> Map.fetch!("transactions")
       |> List.first
 

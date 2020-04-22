@@ -27,7 +27,7 @@
     <%= label @f, :qonto_iban do %>
       Choisissez <b>l'IBAN</b> de votre compte
     <% end %>
-    <%= text_input @f, :qonto_iban, class: "form-control" %>
+    <%= select @f, :qonto_iban, [@f.data.qonto_iban], class: "form-control" %>
     <%= error_tag @f, :qonto_iban %>
   </div>
 
