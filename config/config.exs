@@ -34,7 +34,7 @@ config :capsens_qonto, CapsensQontoWeb.Guardian,
 
 config :capsens_qonto, CapsensQonto.Scheduler,
   jobs: [
-    {"*/5 * * * *", {CapsensQonto.Transactions, :send_report, []}}
+    {"*/5 * * * *", {CapsensQonto.Qonto, :send_report, []}}
   ]
 
 # Import environment specific config. This must remain at the bottom
