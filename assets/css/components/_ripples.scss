@@ -1,0 +1,74 @@
+$ripple-color-pending:     $pending;
+$ripple-color-deactivated: $secondary;
+$ripple-color-activated:   $success;
+
+.ripple {
+  margin: auto;
+  margin-top: 0.5rem;
+  background-color: #FFF;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  position: relative;
+  animation: ripple 3s linear infinite;
+
+  &:before, &:after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    border-radius: 50%;
+    animation: ripple-pending 3s linear infinite 1s;
+  }
+
+  &:after {
+    animation: ripple-pending 3s linear infinite 2s;
+  }
+}
+
+.steps[data-state="pending"] {
+  .ripple {
+    background-color: #FFF;
+
+    &:before, &:after{
+      animation: ripple-pending 3s linear infinite 1s;
+    }
+    &:after {
+      animation: ripple-pending 3s linear infinite 2s;
+    }
+  }
+}
+
+.steps[data-state="activated"] {
+  .ripple {
+    background-color: $success;
+
+    &:before, &:after{
+      animation: ripple-activated 3s linear infinite 1s;
+    }
+    &:after {
+      animation: ripple-activated 3s linear infinite 2s;
+    }
+  }
+}
+
+@keyframes ripple-pending {
+  0% {
+    box-shadow: 0 0 0 .7rem rgba($ripple-color-pending, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 3rem rgba($ripple-color-pending, 0);
+  }
+}
+
+@keyframes ripple-activated {
+  0% {
+    box-shadow: 0 0 0 .7rem rgba($ripple-color-activated, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 3rem rgba($ripple-color-activated, 0);
+  }
+}
+

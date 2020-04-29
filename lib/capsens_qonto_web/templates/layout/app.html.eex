@@ -3,62 +3,15 @@
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title><%= assigns[:page_title] || "CapsensQonto · Phoenix Framework" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%= assigns[:page_title] || "Intégrez Qonto à Slack en 1 minute | CapSens" %></title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <%= csrf_meta_tag() %>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-        </nav>
-      </section>
-    </header>
-    <main role="main" class="container">
-      <%= if get_flash(@conn, :info) do %>
-        <span class="flash d-none info"><%= get_flash(@conn, :info) %></span>
-      <% end %>
-      <%= if get_flash(@conn, :error) do %>
-        <span class="flash d-none error"><%= get_flash(@conn, :error) %></span>
-      <% end %>
 
-      <div class="container">
-        <div class="row justify-content-center my-3">
-          <div class="col-6 text-center">
-            <%= link(to: "/") do %>
-              <h2>Intégrez Qonto à Slack en 2 min</h2>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="row justify-content-center my-3">
-          <div class="col-8 text-center">
-            <h4>Ce site vous permet d'envoyer vos flux financiers Qonto (entrant et/ou sortant) dans un channel Slack</h4>
-          </div>
-        </div>
-
-        <div class="row justify-content-center my-5">
-          <div class="col-12">
-            <h3>
-              <i class="fas fa-lock"></i>
-              Le site est totalement sécurisé et respecte vos données personnelles. Son code est opensource consultable ici : mettre le lien</h3>
-          </div>
-        </div>
-
-        <%= render @view_module, @view_template, assigns %>
-
-        <div class="row justify-content-center my-5">
-          <div class="col-12">
-            <h4 class="text-center">
-              Made with
-              <i class="fas fa-heart"></i>
-              by <%= link("CapSens", to: "https://capsens.eu/") %> l'agence web des fintechs
-            </h4>
-          </div>
-        </div>
-      </div>
-    </main>
+    <%= render @view_module, @view_template, assigns %>
+    
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

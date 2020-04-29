@@ -1,0 +1,20 @@
+<section class="spacer starred-bg" id="rgpd">
+  <div class="container">
+    <div class="row">
+
+        <div class="col-md-4 left">
+          <div class="inner">
+
+              <img src="/images/logos/logo-rgpd-blue.svg" alt="Logo de la RGPD" width="150"/>
+          </div>
+        </div>
+
+        <div class="col-md-8 text-center right">
+          <div class="inner">
+              <h2 class="text-center text-md-left h3 mt-5 mt-md-auto">En conformité avec la Réglementation Générale de la Protection des Données</h2>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</section>

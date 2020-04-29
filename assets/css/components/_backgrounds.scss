@@ -1,0 +1,26 @@
+.bg-primary-light {
+    background: rgba($primary, 0.25);
+  }
+  
+  
+  $star-background: #FFF;
+  $star-color: lighten(#1c50b2, 55%);
+  
+  .starred-bg {
+    background:
+    linear-gradient(324deg, $star-background 4%,   transparent 4%) -105px 64.5px,
+    linear-gradient( 36deg, $star-background 4%,   transparent 4%) 45px 64.5px,
+    linear-gradient( 72deg, $star-color 8.5%, transparent 8.5%) 45px 64.5px,
+    linear-gradient(288deg, $star-color 8.5%, transparent 8.5%) -105px 64.5px,
+    linear-gradient(216deg, $star-color 7.5%, transparent 7.5%) -105px 34.5px,
+    linear-gradient(144deg, $star-color 7.5%, transparent 7.5%) 45px 34.5px,
+  
+    linear-gradient(324deg, $star-background 4%,   transparent 4%) -30px 139.5px,
+    linear-gradient( 36deg, $star-background 4%,   transparent 4%) 120px 139.5px,
+    linear-gradient( 72deg, $star-color 8.5%, transparent 8.5%) 120px 139.5px,
+    linear-gradient(288deg, $star-color 8.5%, transparent 8.5%) -30px 139.5px,
+    linear-gradient(216deg, $star-color 7.5%, transparent 7.5%) -30px 112.5px,
+    linear-gradient(144deg, $star-color 7.5%, transparent 7.5%) 120px 112.5px;
+    background-color: $star-background;
+    background-size: 150px 150px;
+  }

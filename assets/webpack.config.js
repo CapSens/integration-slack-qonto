@@ -65,7 +65,13 @@ module.exports = (env, options) => ({
             outputPath: '../fonts'
           }
         }]
-      }
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        use: [
+          'file-loader',
+        ],
+      },
     ]
   },
   plugins: [

@@ -1,0 +1,65 @@
+#mainBanner {
+    position: relative;
+    height: 100vh;
+    min-height: 720px;
+    border-bottom: 4px solid $primary;
+    box-shadow: $material-design-shadow;
+    background: rgba($primary, 0.2);
+
+    @include media-breakpoint-down(md) {
+      height: 75vh;
+    }
+  
+    &:after {
+      content: "";
+      background-image: url('/images/backgrounds/slack-banner.svg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: -200px 0px;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      position: absolute;
+      z-index: -1;   
+    }
+  
+    .title {
+      text-shadow: $regular-text-shadow;
+      font-size: 4rem;
+      
+      @include media-breakpoint-down(md) {
+        font-size: 2.5rem;
+      }
+    }
+  
+    .baseline {
+      text-shadow: $regular-text-shadow;
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+      margin-top: 20px;
+
+      @include media-breakpoint-down(md) {
+        font-size: 1.45rem;
+        margin-top: 10px;
+        line-height: 1.9rem;
+      }
+    }
+  
+    .right {
+      height: 100vh;
+      min-height: 720px;
+      background: $primary;
+      box-shadow: $material-design-shadow;
+      border-bottom: 4px solid $primary;
+  
+      @include media-breakpoint-down(lg) {
+        background: rgba($primary, 0.65);
+      }
+
+      @include media-breakpoint-down(md) {
+        height: 75vh;
+      }
+    }
+  }

@@ -1,21 +1,9 @@
-<div class="card my-3">
-  <div class="card-header" id="slack">
-    <h5 class="mb-0 text-center">
-      Étape 1 : Connectez votre compte Slack
-    </h5>
-  </div>
+<%= render "new/banner.html" %>
 
-  <div class="card-body text-center">
-    <a href="https://slack.com/oauth/authorize?scope=channels:read,groups:read,chat:write:bot,im:read,users:read&client_id=<%= Application.get_env(:capsens_qonto, :slack_client_id) %>&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"><img alt=""Sign in with Slack"" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" /></a>
-  </div>
-</div>
+<%= render "new/solution.html" %>
 
-<div class="card">
-  <div class="card-header" id="qonto">
-    <h5 class="mb-0 text-center">
-      Étape 2 : Connectez votre compte Qonto
-    </h5>
-  </div>
-  <div>
-  </div>
-</div>
+<%= render "new/rgpd.html" %>
+
+<%= render "new/connection_step.html", assigns %>
+
+<%= render "new/capsens.html" %>

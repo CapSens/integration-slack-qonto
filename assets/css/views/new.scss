@@ -1,0 +1,72 @@
+#howTo {
+  position: relative;
+
+	.stepsRow {
+	  position: relative;
+	}
+  
+  .steps {
+    padding-left: 100px;
+    padding-right: 100px;;
+    margin-top: 50px;
+
+    &[data-state="activated"],
+    &[data-state="disabled"] {
+      .connectButton {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+    // Ripples colors settings can be found in css/components/_ripples.scss
+
+    .inner {
+      padding: 50px;
+    }
+  }
+}
+  
+#theSolution {
+  .solution {
+    padding-left: 25px !important;
+    padding-right: 25px !important;
+    max-width: 500px;
+
+    .inner {
+      padding: 30px;
+      border: 2px solid $primary;
+      border-radius: 20px;
+      background: rgba($primary, 0.5);
+      box-shadow: $material-design-shadow;
+
+      .imgWrapper {
+        display: flex;
+        height: 80px;
+
+        img {
+          margin: auto;
+        }
+      }
+
+      .description {
+        min-height: 75px;
+      }
+    }
+  }
+}
+  
+#rgpd {
+  .left, .right {
+    .inner {
+      min-height: 250px;
+      display: flex;
+
+      @include media-breakpoint-down(sm) {
+        min-height: 100px;
+      }
+
+      img, h2 {
+        margin: auto;
+      }
+    }
+  }
+}

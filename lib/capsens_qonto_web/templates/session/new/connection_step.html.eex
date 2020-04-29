@@ -1,0 +1,43 @@
+<section class="spacer bg-primary-light" id="howTo">
+  <div class="container spacer">
+    <h2 class="text-center h1 mb-5">Configuration en seulement 2 étapes</h2>
+    <div class="row stepsRow">
+      
+      <div class="col-md-6 steps step1" data-state="pending">
+        <div class="rippleWrapper">
+          <div class="rippleInner">
+            <div class="ripple"></div>
+          </div>
+        </div>
+        <div class="inner text-center">
+          <span class="badge badge-pill badge-primary px-4 py-2">1/2</span>
+          <br/>
+          <h3 class="text-center h3 my-3">Connectez<br/>votre compte Slack</h3>
+          <a href="https://slack.com/oauth/authorize?scope=channels:read,groups:read,chat:write:bot,im:read,users:read&client_id=<%= Application.get_env(:capsens_qonto, :slack_client_id) %>&redirect_uri=<%= Routes.slack_auth_url(@conn, :new) %>"
+            type="button" 
+            class="btn btn-secondary text-light py-2 mt-2 connectButton" 
+            id="connectSlack">
+            <img src="/images/logos/slack-logo.svg" width="30" alt="Sign in with Slack" /> 
+            &nbsp;&nbsp;Connexion à Slack
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6 steps step2" data-state="disabled">
+        <div class="rippleWrapper">
+          <div class="ripple"></div>
+        </div>
+        <div class="inner text-center">
+          <span class="badge badge-pill badge-primary px-4 py-2">2/2</span>
+          <br/>
+          <h3 class="text-center h3 my-3">Connectez<br/>votre compte Qonto</h3>
+          <button type="button" class="btn btn-secondary text-light py-2 mt-2 connectButton" id="connectQonto">
+            <img src="/images/logos/logo-qonto.svg" width="30" alt="slack logo" /> 
+            &nbsp;&nbsp;Connexion à Qonto
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
