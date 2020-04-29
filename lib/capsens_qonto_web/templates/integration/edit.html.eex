@@ -1,15 +1,23 @@
-<div class="card">
-  <div class="card-header" id="qonto">
-    <h5 class="mb-0">
-      Connexion à Qonto
-    </h5>
+<div class="container">
+  <div class="row">
+    <div class="col-12 mb-5">
+      <%= link("Retour", to: Routes.integration_path(@conn, :index), class: "btn btn-secondary") %>
+    </div>
   </div>
 
-  <div>
-    <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
-      <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
-    <% end %>
+  <div class="card">
+    <div class="card-header" id="qonto">
+      <h5 class="mb-0">
+        Connexion à Qonto
+      </h5>
+    </div>
 
-    <%= qonto_sample(@integration) %>
+    <div>
+      <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
+        <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
+      <% end %>
+
+      <%= qonto_sample(@integration) %>
+    </div>
   </div>
 </div>
