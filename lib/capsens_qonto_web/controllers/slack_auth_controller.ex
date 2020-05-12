@@ -11,9 +11,10 @@ defmodule CapsensQontoWeb.SlackAuthController do
 
   defp fetch_access_token(conn, _) do
     case CapsensQonto.Slack.request_access_token(conn.params["code"]) do
-      {:ok, access_token: slack_access_token, user_id: slack_user_id} ->
+      {:ok, access_token: slack_access_token, user_id: slack_user_id, team_name: slack_team_name} ->
         conn = assign(conn, :slack_user_id, slack_user_id)
         conn = assign(conn, :slack_access_token, slack_access_token)
+        conn = assign(conn, :slack_team_name, slack_team_name)
       {:error, error} ->
         conn
         |> put_flash(:error, error)
@@ -25,7 +26,13 @@ defmodule CapsensQontoWeb.SlackAuthController do
   defp find_or_create_user(conn, _) do
     case CapsensQonto.User.find_by(slack_user_id: conn.assigns[:slack_user_id]) do
       nil ->
-        case CapsensQonto.User.create(%{slack_user_id: conn.assigns[:slack_user_id], slack_access_token: conn.assigns[:slack_access_token]}) do
+        case CapsensQonto.User.create(
+              %{
+                slack_user_id: conn.assigns[:slack_user_id],
+                slack_access_token: conn.assigns[:slack_access_token],
+                slack_team_name: conn.assigns[:slack_team_name]
+              }
+            ) do
           {:ok, user} ->
             assign(conn, :user, user)
           {:error, %Ecto.Changeset{}} ->
@@ -35,7 +42,7 @@ defmodule CapsensQontoWeb.SlackAuthController do
             |> halt()
         end
       user ->
-        CapsensQonto.User.update(CapsensQonto.User.changeset(user, %{slack_access_token: conn.assigns[:slack_access_token]}))
+        CapsensQonto.User.update(CapsensQonto.User.changeset(user, %{slack_access_token: conn.assigns[:slack_access_token], slack_team_name: conn.assigns[:slack_team_name]}))
         assign(conn, :user, user)
     end
   end

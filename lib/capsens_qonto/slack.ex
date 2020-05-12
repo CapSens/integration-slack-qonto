@@ -15,7 +15,7 @@ defmodule CapsensQonto.Slack do
       %HTTPoison.Response{status_code: 200, body: body} ->
         case payload = Jason.decode!(body) do
           %{"ok" => true} ->
-            {:ok, access_token: payload["access_token"], user_id: payload["user_id"]}
+            {:ok, access_token: payload["access_token"], user_id: payload["user_id"], team_name: payload["team_name"]}
           %{"ok" => false, "error" => error} ->
             {:error, error}
           _ ->

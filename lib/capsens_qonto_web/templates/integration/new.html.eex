@@ -1,14 +1,4 @@
-<!-- TODO : Render this partial everywhere except on homepage -->
-<nav class="navbar navbar-light bg-primary shadow">
-  <a class="navbar-brand" href="#">
-    <img src='<%= Routes.static_path(@conn, "/images/logos/Logo.Capsens.blanc.transparent.svg") %>' width="30" height="30" class="d-inline-block align-top" alt="logo de CapSens">
-    <p class="branding h1 text-center text-light h6 d-inline-block">Qonto x Slack<span class="d-none d-md-inline-block">by CapSens</span></p>
-  </a>
-  <span class="navbar-text text-light">
-    Bonjour, Johnathan
-    <i class="ml-2 fas fa-power-off"></i>
-  </span>
-</nav>
+<%= render CapsensQontoWeb.SharedView, "navbar.html" , conn: @conn, current_user: @current_user %>
 
 <section class="d-flex integrationWrapper">
   <div class="overlay"></div>

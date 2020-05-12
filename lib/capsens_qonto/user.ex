@@ -8,6 +8,7 @@ defmodule CapsensQonto.User do
   schema "users" do
     field :slack_access_token, :string
     field :slack_user_id, :string
+    field :slack_team_name, :string
 
     has_many :integrations, CapsensQonto.Integration
 
@@ -16,7 +17,7 @@ defmodule CapsensQonto.User do
 
   def changeset(user, attrs \\ %{}) do
     user
-    |> cast(attrs, [:slack_access_token, :slack_user_id])
+    |> cast(attrs, [:slack_access_token, :slack_user_id, :slack_team_name])
     |> validate_required([:slack_access_token, :slack_user_id])
     |> unique_constraint(:slack_user_id)
   end
