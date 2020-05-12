@@ -1,9 +1,13 @@
 // Shadows
 $tactile-text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
 $regular-text-shadow: 0px 1px 2px rgba(49,117,153,0.48);
-$material-design-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+$material-design-shadow:  0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 $material-design-shadow-accent: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 $box-shadow-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+%material-shadow {
+  box-shadow: $material-design-shadow;
+}
 
 // SVG Shadows
 @mixin illustrationDropShadows() {
@@ -14,3 +18,4 @@ $box-shadow-transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 
 // Others stuff
 $border-radius: 8px;
+

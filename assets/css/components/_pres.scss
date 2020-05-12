@@ -1,0 +1,12 @@
+pre {
+  line-height: 15px;
+  padding-top: 30px;
+  padding-bottom: 10px;
+  position: relative;
+
+  &.h-200 {
+    max-height: 200px;
+    overflow-y: scroll;
+    border-radius: $border-radius;
+  }
+}

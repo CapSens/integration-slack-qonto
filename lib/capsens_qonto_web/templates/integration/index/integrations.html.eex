@@ -1,0 +1,44 @@
+<section class="container">
+  <%= link(to: Routes.integration_path(@conn, :new), class: "btn btn-outline-primary pt-2 mb-4") do %>
+    <i class="fa fa-plus"></i>
+    Ajouter un compte Qonto 
+  <% end %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="d-none d-md-table-cell">#</th>
+        <th scope="col">IBAN</th>
+        <th scope="col" class="d-none d-md-table-cell">Channel Slack</th>
+        <th scope="col" class="d-none d-md-table-cell">Types de transactions</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= @integrations |> Enum.with_index |> Enum.map(fn {integration, i} -> %>
+        <tr>
+          <th scope="row" class="align-middle d-none d-md-table-cell"><%= i + 1 %></th>
+          <td class="align-middle"><%= integration.qonto_iban %></td>
+          <!-- TODO : Replace with channel name -->
+          <td class="align-middle d-none d-md-table-cell"><%= integration.slack_channel %></td>
+          <td class="align-middle d-none d-md-table-cell">
+            <%= integration.qonto_transaction_type |> Enum.map(fn(transaction_type) -> %>
+              <span class="badge badge-oulline badge-primary pt-2 pb-1 px-3"><%= transaction_type %></span>
+            <% end) %>
+          </td>
+          <td class="align-middle text-center text-md-left">
+            <%= link(to: Routes.integration_path(@conn, :edit, integration.id), class: "btn btn-sm btn-primary") do %>
+              <i class="fa fa-edit"></i>
+              <span class="d-none d-sm-inline-block">Éditer</span>
+            <% end %>
+
+            <%= link(to: Routes.integration_path(@conn, :delete, integration.id), class: "btn btn-sm btn-danger", method: :delete) do %>
+              <i class="fa fa-trash"></i>
+              <span class="d-none d-sm-inline-block">Supprimer</span>
+            <% end %>
+          </td>
+        </tr>
+      <% end) %>
+    </tbody>
+  </table>
+</section>

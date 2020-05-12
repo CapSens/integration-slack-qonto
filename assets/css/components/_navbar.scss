@@ -1,0 +1,13 @@
+.navbar {
+  z-index: 10;
+
+  .branding {
+    @include media-breakpoint-down(sm) {
+      font-size: 0.9rem;
+    }
+  }
+  
+  &.shadow {
+    box-shadow: $material-design-shadow !important;
+  }
+}

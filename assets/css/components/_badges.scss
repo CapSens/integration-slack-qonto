@@ -1,0 +1,11 @@
+$badge-border-radius: 5rem;
+
+.badge-oulline {
+  background: transparent;
+
+  &.badge-primary {
+    color: $primary;
+    border: 2px solid $primary;
+    border-radius: $badge-border-radius;
+  }
+}

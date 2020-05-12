@@ -6,6 +6,12 @@
     box-shadow: $material-design-shadow;
     background: rgba($primary, 0.2);
 
+    .imgWrapper {
+      display: -webkit-flex; /* Safari */
+      -webkit-align-items: center; /* Safari 7.0+ */
+      display: flex;
+    }
+
     @include media-breakpoint-down(md) {
       height: 75vh;
     }

@@ -1,4 +1,3 @@
-<!-- TODO : Render this partial everywhere except on homepage -->
 <nav class="navbar navbar-light bg-primary shadow">
   <a class="navbar-brand" href="#">
     <img src='<%= Routes.static_path(@conn, "/images/logos/Logo.Capsens.blanc.transparent.svg") %>' width="30" height="30" class="d-inline-block align-top" alt="logo de CapSens">
@@ -9,16 +8,3 @@
     <i class="ml-2 fas fa-power-off"></i>
   </span>
 </nav>
-
-<section class="container spacer">
-  <div class="row">
-    <div class="mt-4 col-3 col-md-1 d-flex">
-      <%= render "index/svg_checkmark.html" %>
-    </div>
-    <div class="mt-4 col-9 col-md-11 d-flex">
-      <h2 class="h4 my-auto pt-1">Connexion à Slack opérationnelle</h2>
-    </div>
-  </div>
-</section>
-
-<%= render "index/integrations.html",  conn: @conn, integrations: @integrations %>

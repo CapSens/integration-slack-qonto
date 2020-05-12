@@ -1,0 +1,22 @@
+.card {
+  @extend %material-shadow;
+
+  .card-header {
+    background-color: rgba($primary, 0.15);
+    color: $primary;
+  }
+
+  .card-body {
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+    @include media-breakpoint-down(sm) {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  .card-footer {
+
+  }
+}

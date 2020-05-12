@@ -1,12 +1,12 @@
 <section class="" id="mainBanner">
   <div class="row mx-0">
     <div class="col-lg-7 offset-lg-5 col-xl-5 offset-xl-7 px-4 px-md-5 right">
-      <div class="d-flex mt-4">
+      <div class="imgWrapper  mt-4">
         <img src="/images/app/undraw_make_it_rain_iwk4.svg" width="275" class="mx-auto ml-md-2 mt-2 mt-lg-5" />
       </div>
       <h1 class="title text-light mt-4">Intégrez Qonto à Slack en quelques clics !</h1>
       <p class="text-left baseline text-light">Ce site vous permet d'envoyer vos flux financiers Qonto (entrant et/ou sortant) dans un channel Slack grâce à un protocole sécurisé et respectant vos données personnelles.</p>
-      <a href="#" type="button" class="btn btn-lg btn-outline-light px-5 mt-2 mt-md-4">Démarrer</a>
+      <a href="#getting-started" class="btn btn-lg btn-outline-light px-5 mt-2 mt-md-4">Démarrer</a>
     </div>
   </div>
 </section>

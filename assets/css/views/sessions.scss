@@ -1,5 +1,11 @@
-#howTo {
+#getting-started {
   position: relative;
+
+  @include media-breakpoint-down(md) {
+    .section-title {
+      font-size: 2rem;
+    }
+  }
 
 	.stepsRow {
 	  position: relative;
@@ -7,7 +13,23 @@
   
   .steps {
     padding-left: 100px;
-    padding-right: 100px;;
+    padding-right: 100px;
+
+    @include media-breakpoint-down(md) {
+      padding-left: 10px;
+      padding-right: 10px;
+
+      h3 {
+        font-size: 1.5rem;;
+      }
+    }
+
+
+    @include media-breakpoint-down(sm) {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
     margin-top: 50px;
 
     &[data-state="activated"],

@@ -1,6 +1,9 @@
-<div class="card-body code-background">
-  Exemple de réponse :
-  <pre>
+
+<span class="link mt-4 d-block" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  Voir un exemple de réponse >
+</span>
+<div class="collapse" id="collapseExample">
+  <pre class="h-200">
     <%= for {k, v} <- @result do %>
       <%= k %> : <%= v %><br />
     <% end %>

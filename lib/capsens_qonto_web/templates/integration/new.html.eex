@@ -1,29 +1,35 @@
-<div class="row">
-  <div class="col-12">
-    <%= link("Retour", to: Routes.integration_path(@conn, :index), class: "btn btn-secondary") %>
-  </div>
-</div>
+<!-- TODO : Render this partial everywhere except on homepage -->
+<nav class="navbar navbar-light bg-primary shadow">
+  <a class="navbar-brand" href="#">
+    <img src='<%= Routes.static_path(@conn, "/images/logos/Logo.Capsens.blanc.transparent.svg") %>' width="30" height="30" class="d-inline-block align-top" alt="logo de CapSens">
+    <p class="branding h1 text-center text-light h6 d-inline-block">Qonto x Slack<span class="d-none d-md-inline-block">by CapSens</span></p>
+  </a>
+  <span class="navbar-text text-light">
+    Bonjour, Johnathan
+    <i class="ml-2 fas fa-power-off"></i>
+  </span>
+</nav>
 
-<div class="card my-3 text-center">
-  <div class="card-header" id="slack">
-    <h5 class="mb-0 text-center">
-      Étape 1 : Connectez votre compte Slack
-    </h5>
-  </div>
-  <div>
-  </div>
-</div>
+<section class="d-flex integrationWrapper">
+  <div class="overlay"></div>
+  <div class="container m-auto">
+    <div class="card">
+      <div class="card-header" id="qonto">
+        <h2 class="h4 mb-0 text-center pt-3 pb-2">
+          Ajouter une nouvelle intégration Qonto
+        </h2>
+      </div>
 
-<div class="card">
-  <div class="card-header" id="qonto">
-    <h5 class="mb-0 text-center">
-      Étape 2 : Connectez votre compte Qonto
-    </h5>
-  </div>
+      <div class="card-body">
+        <%= form_for @changeset, Routes.integration_path(@conn, :create), fn(f) -> %>
+          <%= render "form.html", 
+                    f: f, 
+                    current_user: @conn.assigns[:current_user], 
+                    connection: @conn,
+                    integration: nil %>
+        <% end %>
+      </div>
 
-  <div>
-    <%= form_for @changeset, Routes.integration_path(@conn, :create), fn(f) -> %>
-      <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
-    <% end %>
+    </div>
   </div>
-</div>
+</section>

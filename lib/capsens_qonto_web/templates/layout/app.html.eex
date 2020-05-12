@@ -9,9 +9,7 @@
     <%= csrf_meta_tag() %>
   </head>
   <body>
-
     <%= render @view_module, @view_template, assigns %>
-    
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

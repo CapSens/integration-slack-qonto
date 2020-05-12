@@ -1,45 +1,59 @@
-<div class="card-body">
-  <div class="form-group">
-    <%= label @f, :qonto_identifier do %>
-      Sélectionnez le <b>channel Slack</b> sur lequel vous souhaitez être notifié de nouveaux virements
-    <% end %>
-    <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control" %>
-    <%= error_tag @f, :slack_channel %>
-  </div>
-
-  <div class="form-group">
+<div class="form-part">
+  <h3 class="text-left h4">Vos identifiants Qonto</h3>
+  <div class="form-group mt-3 mb-0">
     <%= label @f, :qonto_identifier do %>
       Collez ici votre identifiant. <b>Votre identifiant</b> n'est pas votre e-mail, c'est le champ "identifiant" qui se trouve dans votre espace Qonto, dans "Paramètres"> "API". Il se termine par 4 chiffres
     <% end %>
-    <%= text_input @f, :qonto_identifier, class: "form-control" %>
+    <%= text_input @f, :qonto_identifier, class: "form-control", required: true %>
     <%= error_tag @f, :qonto_identifier %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mt-3 mb-0">
     <%= label @f, :qonto_secret_key do %>
       <b>Votre clé secrète</b> se trouve dans votre espace Qonto, dans "Paramètres"> "API". Vous pouvez en générer un si vous n'en avez pas déjà un
     <% end %>
-    <%= text_input @f, :qonto_secret_key, class: "form-control" %>
+    <%= text_input @f, :qonto_secret_key, class: "form-control", required: true %>
     <%= error_tag @f, :qonto_secret_key %>
   </div>
+</div>
 
-  <div class="form-group">
+<div class="form-part">
+  <h3 class="text-left h4">Choix du channel Slack</h3>
+  <div class="form-group mt-3 mb-0">
+    <%= label @f, :qonto_identifier do %>
+      Sélectionnez le <b>channel Slack</b> sur lequel vous souhaitez être notifié de nouveaux virements
+    <% end %>
+    <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control", required: true %>
+    <%= error_tag @f, :slack_channel %>
+  </div>
+</div>
+
+<div class="form-part">
+  <h3 class="text-left h4">Configurations supplémentaires</h3>
+  <div class="form-group mt-3 mb-0">
     <%= label @f, :qonto_iban do %>
       Choisissez <b>l'IBAN</b> de votre compte
     <% end %>
-    <%= select @f, :qonto_iban, [@f.data.qonto_iban], class: "form-control" %>
+    <%= select @f, :qonto_iban, [@f.data.qonto_iban], class: "form-control", required: true %>
     <%= error_tag @f, :qonto_iban %>
   </div>
 
-  <div class="form-group">
+  <div class="form-group mt-3 mb-0">
     <%= label @f, :qonto_transaction_type do %>
       <b>Quelles transactions</b> sont concernées ?
     <% end %>
-    <%= multiple_select @f, :qonto_transaction_type, CapsensQonto.Integration.qonto_transaction_types, class: "form-control" %>
+    <%= multiple_select @f, :qonto_transaction_type, CapsensQonto.Integration.qonto_transaction_types, default: "Veuillez choisir un channel Slack", class: "form-control", required: true %>
     <%= error_tag @f, :qonto_transaction_type %>
   </div>
 
-  <div class="form-group">
-    <%= submit "Valider", class: "btn btn-primary" %>
-  </div>
+  <%= if @integration do %>
+    <%= qonto_sample(@integration) %>
+  <% end %>
+</div>
+
+
+<div class="form-group text-center mt-4">
+  <%= link("Annuler", to: Routes.integration_path(@connection, :index), class: "card-link text-secondary mr-5") %>
+  <%= submit "Valider", class: "btn btn-primary" %>
+  <!-- TODO : Maybe it's not the right way to use connection in this partials ? -->
 </div>

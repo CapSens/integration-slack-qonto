@@ -1,0 +1,24 @@
+.integrationWrapper {
+  min-height: calc(100vh - 60px);
+  background-image: url('/images/backgrounds/slack-banner.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: relative;
+  z-index: 0;
+
+  &:after {
+    content: '';
+    background-color: rgba($secondary, 0.6);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  .card {
+    z-index: 2;
+  }
+}

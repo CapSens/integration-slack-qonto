@@ -1,23 +1,31 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12 mb-5">
-      <%= link("Retour", to: Routes.integration_path(@conn, :index), class: "btn btn-secondary") %>
+<!-- TODO : Render this partial everywhere except on homepage -->
+<nav class="navbar navbar-light bg-primary shadow">
+  <a class="navbar-brand" href="#">
+    <img src='<%= Routes.static_path(@conn, "/images/logos/Logo.Capsens.blanc.transparent.svg") %>' width="30" height="30" class="d-inline-block align-top" alt="logo de CapSens">
+    <p class="branding h1 text-center text-light h6 d-inline-block">Qonto x Slack<span class="d-none d-md-inline-block">by CapSens</span></p>
+  </a>
+  <span class="navbar-text text-light">
+    Bonjour, Johnathan
+    <i class="ml-2 fas fa-power-off"></i>
+  </span>
+</nav>
+
+<section class="d-flex integrationWrapper">
+  <div class="overlay"></div>
+  <div class="container m-auto">
+    <div class="card">
+      <div class="card-header" id="qonto">
+        <h2 class="h4 mb-0 text-center pt-3 pb-2">
+          Vérifier votre  intégration Qonto
+        </h2>
+      </div>
+
+      <div class="card-body">
+        <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
+          <%= render "form.html", f: f, current_user: @conn.assigns[:current_user], connection: @conn, integration: @integration %>
+        <% end %>
+      </div>
+
     </div>
   </div>
-
-  <div class="card">
-    <div class="card-header" id="qonto">
-      <h5 class="mb-0">
-        Connexion à Qonto
-      </h5>
-    </div>
-
-    <div>
-      <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
-        <%= render "form.html", f: f, current_user: @conn.assigns[:current_user] %>
-      <% end %>
-
-      <%= qonto_sample(@integration) %>
-    </div>
-  </div>
-</div>
+</section>
