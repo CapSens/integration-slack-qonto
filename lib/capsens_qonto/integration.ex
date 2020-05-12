@@ -13,6 +13,7 @@ defmodule CapsensQonto.Integration do
     field :qonto_transaction_type, {:array, :string}
     field :slack_channel, :string
     field :last_transaction_id, :string
+    field :slack_channel_name, :string
 
     belongs_to :user, CapsensQonto.User
 
@@ -22,7 +23,7 @@ defmodule CapsensQonto.Integration do
   def changeset(integration, attrs \\ %{}) do
     integration
     |> Repo.preload(:user)
-    |> cast(attrs, [:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel])
+    |> cast(attrs, [:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel, :slack_channel_name])
     |> put_assoc(:user, attrs["user"])
     |> validate_required([:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel, :user])
   end
@@ -30,7 +31,7 @@ defmodule CapsensQonto.Integration do
   def update_changeset(integration, attrs \\ %{}) do
     integration
     |> Repo.preload(:user)
-    |> cast(attrs, [:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel])
+    |> cast(attrs, [:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel, :slack_channel_name])
     |> validate_required([:qonto_iban, :qonto_identifier, :qonto_secret_key, :qonto_transaction_type, :slack_channel, :user])
   end
 

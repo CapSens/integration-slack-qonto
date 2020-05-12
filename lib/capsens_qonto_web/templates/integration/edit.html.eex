@@ -12,7 +12,7 @@
 
       <div class="card-body">
         <%= form_for @changeset, Routes.integration_path(@conn, :update, @integration), fn(f) -> %>
-          <%= render "form.html", f: f, current_user: @conn.assigns[:current_user], connection: @conn, integration: @integration %>
+          <%= render "form.html", f: f, current_user: @conn.assigns[:current_user], conn: @conn, integration: @integration %>
         <% end %>
       </div>
 

@@ -15,7 +15,7 @@
           <%= render "form.html", 
                     f: f, 
                     current_user: @conn.assigns[:current_user], 
-                    connection: @conn,
+                    conn: @conn,
                     integration: nil %>
         <% end %>
       </div>

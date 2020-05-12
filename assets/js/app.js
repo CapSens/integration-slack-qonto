@@ -26,6 +26,13 @@ if ($('.flash.error')[0]) {
 
 $('select').select2();
 
+const updateSlackChannelNameInput = () => {
+  $('#integration_slack_channel_name').val($('#integration_slack_channel option:selected').html());
+};
+
+$('body').on('change', '#integration_slack_channel', updateSlackChannelNameInput);
+updateSlackChannelNameInput();
+
 const updateIbanSelect = () => {
   if ($('#integration_qonto_identifier').val() && $('#integration_qonto_secret_key').val()) {
     $('#integration_qonto_iban').parent("div").removeClass("d-none");

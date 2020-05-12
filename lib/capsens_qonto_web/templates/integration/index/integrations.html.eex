@@ -19,8 +19,7 @@
         <tr>
           <th scope="row" class="align-middle d-none d-md-table-cell"><%= i + 1 %></th>
           <td class="align-middle"><%= integration.qonto_iban %></td>
-          <!-- TODO : Replace with channel name -->
-          <td class="align-middle d-none d-md-table-cell"><%= integration.slack_channel %></td>
+          <td class="align-middle d-none d-md-table-cell"><%= integration.slack_channel_name %></td>
           <td class="align-middle d-none d-md-table-cell">
             <%= integration.qonto_transaction_type |> Enum.map(fn(transaction_type) -> %>
               <span class="badge badge-oulline badge-primary pt-2 pb-1 px-3"><%= transaction_type %></span>

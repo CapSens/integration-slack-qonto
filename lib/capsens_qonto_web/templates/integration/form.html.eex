@@ -23,6 +23,7 @@
     <%= label @f, :qonto_identifier do %>
       Sélectionnez le <b>channel Slack</b> sur lequel vous souhaitez être notifié de nouveaux virements
     <% end %>
+    <%= hidden_input @f, :slack_channel_name %>
     <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control", required: true, prompt: "Choix du channel Slack" %>
     <%= error_tag @f, :slack_channel %>
   </div>
@@ -53,7 +54,6 @@
 
 
 <div class="form-group text-center mt-4">
-  <%= link("Annuler", to: Routes.integration_path(@connection, :index), class: "card-link text-secondary mr-5") %>
+  <%= link("Annuler", to: Routes.integration_path(@conn, :index), class: "card-link text-secondary mr-5") %>
   <%= submit "Valider", class: "btn btn-primary" %>
-  <!-- TODO : Maybe it's not the right way to use connection in this partials ? -->
 </div>
