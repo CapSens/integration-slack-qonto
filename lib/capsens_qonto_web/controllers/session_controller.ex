@@ -6,6 +6,9 @@ defmodule CapsensQontoWeb.SessionController do
   end
 
   def delete(conn, params) do
-    conn |> CapsensQontoWeb.Guardian.Plug.sign_out |> redirect(to: "/")
+    conn
+    |> put_flash(:info, gettext("signed_out"))
+    |> CapsensQontoWeb.Guardian.Plug.sign_out
+    |> redirect(to: "/")
   end
 end

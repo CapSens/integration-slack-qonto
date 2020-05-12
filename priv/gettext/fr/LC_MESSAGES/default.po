@@ -12,7 +12,8 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/capsens_qonto_web/controllers/slack_auth_controller.ex:33
+#: lib/capsens_qonto/slack.ex:44
+#: lib/capsens_qonto_web/controllers/slack_auth_controller.ex:40
 msgid "unknown_error"
 msgstr "Erreur inconnue"
 
@@ -28,8 +29,18 @@ msgctxt "integration"
 msgid "update_success"
 msgstr "Intégration mise à jour"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/capsens_qonto_web/controllers/integration_controller.ex:51
 msgctxt "integration"
 msgid "deletion_success"
 msgstr "Intégration supprimée"
+
+#, elixir-format
+#: lib/capsens_qonto_web/controllers/slack_auth_controller.ex:57
+msgid "signed_in"
+msgstr "Compte Slack connecté avec succès"
+
+#, elixir-format, fuzzy
+#: lib/capsens_qonto_web/controllers/session_controller.ex:10
+msgid "signed_out"
+msgstr "Vous êtes déconnecté"

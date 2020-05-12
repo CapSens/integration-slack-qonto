@@ -42,12 +42,19 @@ defmodule CapsensQontoWeb.SlackAuthController do
             |> halt()
         end
       user ->
-        CapsensQonto.User.update(CapsensQonto.User.changeset(user, %{slack_access_token: conn.assigns[:slack_access_token], slack_team_name: conn.assigns[:slack_team_name]}))
+        CapsensQonto.User.update(
+          CapsensQonto.User.changeset(
+            user,
+            %{slack_access_token: conn.assigns[:slack_access_token], slack_team_name: conn.assigns[:slack_team_name]}
+          )
+        )
         assign(conn, :user, user)
     end
   end
 
   defp authenticate_user(conn, _) do
-    CapsensQontoWeb.Guardian.Plug.sign_in(conn, conn.assigns[:user])
+    conn
+    |> put_flash(:info, gettext("signed_in"))
+    |> CapsensQontoWeb.Guardian.Plug.sign_in(conn.assigns[:user])
   end
 end

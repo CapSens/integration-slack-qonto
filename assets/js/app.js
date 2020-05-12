@@ -17,12 +17,14 @@ import "select2";
 
 toastr.options.toastClass = 'toastr';
 
-if ($('.flash.info')[0]) {
-  toastr["info"]($('.flash.info').html());
-}
-if ($('.flash.error')[0]) {
-  toastr["error"]($('.flash.error').html());
-}
+$(document).ready(() => {
+  if ($('.flash.info')[0]) {
+    toastr["info"]($('.flash.info').html());
+  }
+  if ($('.flash.error')[0]) {
+    toastr["error"]($('.flash.error').html());
+  }
+});
 
 $('select').select2();
 

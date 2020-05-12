@@ -11,5 +11,12 @@
   <body>
     <%= render @view_module, @view_template, assigns %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+    <%= if get_flash(@conn, :info) do %>
+      <span class="flash d-none info"><%= get_flash(@conn, :info) %></span>
+    <% end %>
+    <%= if get_flash(@conn, :error) do %>
+      <span class="flash d-none error"><%= get_flash(@conn, :error) %></span>
+    <% end %>
   </body>
 </html>
