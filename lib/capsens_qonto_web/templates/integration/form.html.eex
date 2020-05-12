@@ -12,7 +12,7 @@
     <%= label @f, :qonto_secret_key do %>
       <b>Votre clé secrète</b> se trouve dans votre espace Qonto, dans "Paramètres"> "API". Vous pouvez en générer un si vous n'en avez pas déjà un
     <% end %>
-    <%= text_input @f, :qonto_secret_key, class: "form-control", required: true %>
+    <%= password_input @f, :qonto_secret_key, class: "form-control", required: true %>
     <%= error_tag @f, :qonto_secret_key %>
   </div>
 </div>
@@ -23,7 +23,7 @@
     <%= label @f, :qonto_identifier do %>
       Sélectionnez le <b>channel Slack</b> sur lequel vous souhaitez être notifié de nouveaux virements
     <% end %>
-    <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control", required: true %>
+    <%= select @f, :slack_channel, slack_channels(@current_user), class: "form-control", required: true, prompt: "Choix du channel Slack" %>
     <%= error_tag @f, :slack_channel %>
   </div>
 </div>

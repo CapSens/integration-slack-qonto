@@ -16,7 +16,7 @@ defmodule CapsensQontoWeb.IntegrationController do
       {:ok, integration} ->
         conn
         |> put_flash(:info, pgettext("integration", "creation_success"))
-        |> redirect(to: Routes.integration_path(conn, :edit, integration.id))
+        |> redirect(to: Routes.integration_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -37,7 +37,7 @@ defmodule CapsensQontoWeb.IntegrationController do
       {:ok, integration} ->
         conn
         |> put_flash(:info, pgettext("integration", "update_success"))
-        |> redirect(to: Routes.integration_path(conn, :edit, integration.id))
+        |> redirect(to: Routes.integration_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", integration: integration, changeset: changeset)
     end

@@ -31,6 +31,7 @@ defmodule CapsensQontoWeb.Router do
 
     get "/", SessionController, :new
     resources "/sessions", SessionController, only: [:new]
+    delete "/sessions", SessionController, :delete
     get "/slack/auth", SlackAuthController, :new
   end
 
