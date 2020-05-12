@@ -29,6 +29,7 @@ defmodule CapsensQontoWeb.Router do
   scope "/", CapsensQontoWeb do
     pipe_through :browser
 
+    get "/", SessionController, :new
     resources "/sessions", SessionController, only: [:new]
     get "/slack/auth", SlackAuthController, :new
   end
@@ -36,9 +37,7 @@ defmodule CapsensQontoWeb.Router do
   scope "/", CapsensQontoWeb do
     pipe_through [:browser, :auth]
 
-    resources "/integrations", IntegrationController, only: [:new, :create, :edit, :update, :delete]
+    resources "/integrations", IntegrationController, only: [:new, :create, :edit, :update, :delete, :index]
     resources "/bank_accounts", BankAccountController, only: [:index]
-
-    get "/", IntegrationController, :index
   end
 end

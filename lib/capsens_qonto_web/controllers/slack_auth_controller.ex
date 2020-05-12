@@ -6,7 +6,7 @@ defmodule CapsensQontoWeb.SlackAuthController do
   plug :authenticate_user
 
   def new(conn, params) do
-    conn |> redirect(to: "/")
+    conn |> redirect(to: Routes.integration_path(conn, :index))
   end
 
   defp fetch_access_token(conn, _) do
