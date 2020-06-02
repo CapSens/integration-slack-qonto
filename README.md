@@ -1,20 +1,47 @@
 # CapsensQonto
 
-To start your Phoenix server:
+This is the source code of the live website [**https://qonto-slack.capsens.eu/**](https://qonto-slack.capsens.eu/)
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+It is a site that allows any user to authenticate with their Slack and Qonto account and get notified about new incoming or
+outcoming transactions.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Install and setup
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+### 1. Install Elixir's dependencies
 
-## Learn more
+`mix.deps.get`
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+### 2. Setup the development environment
+
+fill in necessary variables (eg.: `DATABASE_USERNAME`) in **config/dev.exs** :
+
+  - either in your environment (bash, zsh, ...)
+  - either directly in this file (be careful not to commit your variables, this file is versioned)
+  
+### 3. Create and setup the database
+
+`mix ecto.setup`
+  
+### 4. Install JavaScript's dependencies
+
+`cd assets; yarn` 
+
+OR
+
+`cd assets; npm install`
+
+### 5. Launch server
+
+`mix phx.server`
+  
+You can now reach the server at [**http://localhost:4000**](http://localhost:4000)
+
+## Integration
+
+An `Integration` is a database object representing a Slack/Qonto account couple. Any user can create and edit multiple integrations.
+A periodic report will be sent to each integration's specified Slack channel.
+
+## Setup the scheduler
+
+A scheduler is set up by default to send a report for each integration every 5 minutes. You change this in **config/config.exs**
+

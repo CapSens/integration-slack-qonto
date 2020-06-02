@@ -6,9 +6,9 @@ config :capsens_qonto,
 
 # Configure your database
 config :capsens_qonto, CapsensQonto.Repo,
-  username: "eliotbardet",
-  password: "",
-  database: "capsens_qonto_dev",
+  username: System.get_env("DATABASE_USERNAME"),
+  password: System.get_env("DATABASE_PASSWORD"),
+  database: System.get_env("DATABASE_NAME"),
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
