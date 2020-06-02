@@ -16,7 +16,7 @@ outcoming transactions.
 fill in necessary variables (eg.: `DATABASE_USERNAME`) in **config/dev.exs** :
 
   - either in your environment (bash, zsh, ...)
-  - eithir directly in this file (be careful not to commit your variables, this file is versioned)
+  - either directly in this file (be careful not to commit your variables, this file is versioned)
   
 ### 3. Create and setup the database
 
@@ -36,14 +36,12 @@ OR
   
 You can now reach the server at [**http://localhost:4000**](http://localhost:4000)
 
-## `Integration`
+## Integration
 
 An `Integration` is a database object representing a Slack/Qonto account couple. Any user can create and edit multiple integrations.
-A periodic report will be sent to the integration's specified Slack channel.
+A periodic report will be sent to each integration's specified Slack channel.
 
 ## Setup the scheduler
 
-Un scheduler est paramétré par défaut pour envoyer un rapport par intégration toutes les 5 minutes. Cela peut-être changé dans
-**config/config.exs**
 A scheduler is set up by default to send a report for each integration every 5 minutes. You change this in **config/config.exs**
 
