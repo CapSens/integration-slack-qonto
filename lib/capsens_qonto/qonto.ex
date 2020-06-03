@@ -11,13 +11,13 @@ defmodule CapsensQonto.Qonto do
         ) do
       %HTTPoison.Response{status_code: 200, body: body} ->
         case payload = Jason.decode!(body) do
-          %{"transactions" => %{"transactions" => transactions}} ->
-            transactions
+          %{} = map ->
+            %{"transactions" => map["transactions"], "meta" => map["meta"]}
           _ ->
-            []
+            %{"transactions" => [], "meta" => %{}}
         end
       _ ->
-        []
+        %{"transactions" => [], "meta" => %{}}
     end
   end
 
@@ -41,6 +41,7 @@ defmodule CapsensQonto.Qonto do
     Enum.map(integrations, fn(integration) ->
       last_transaction =
         list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 1)
+        |> Map.fetch!("transactions")
         |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
         |> List.first
 
@@ -60,7 +61,7 @@ defmodule CapsensQonto.Qonto do
   defp report_new_transactions(integration, current_page \\ 1) do
     transactions = list_transactions(integration.qonto_identifier, integration.qonto_secret_key, integration.qonto_iban, 100, 1)
     new_transactions =
-      Enum.take_while(transactions, fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
+      Enum.take_while(transactions["transactions"], fn(tr) -> tr["transaction_id"] != integration.last_transaction_id end)
     |> Enum.filter(fn(tr) -> Enum.member?(integration.qonto_transaction_type, tr["side"]) end)
 
     Enum.each(new_transactions, fn(transaction) ->
